@@ -1,0 +1,19 @@
+body {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.App {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dinner-list {
+  float: left;
+  padding-right: 60px;
+}
+
+.add-dinner {
+  display: flex;
+  flex-direction: column;
+}

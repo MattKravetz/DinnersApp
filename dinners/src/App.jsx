@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import DinnerList from './components/DinnerList'
 
 import './App.css';
 import AddDinnerButton from './components/AddDinnerButton';
-
+import CreateDinner from './components/CreateDinner'
 
 
 class App extends Component {
@@ -23,6 +23,7 @@ class App extends Component {
     return (
         <div className="App">
           <DinnerList dinners={this.state.dinners}/>
+          <CreateDinner />
           <AddDinnerButton handleSubmit={this.addDinner}/>
         </div>
     );

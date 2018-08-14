@@ -9,21 +9,29 @@ import CreateDinner from './components/CreateDinner'
 class App extends Component {
   constructor(props){
       super(props)
+      // State holds an array of `dinners`.   
       this.state = {
           dinners: [],
       };
   }
 
-  addDinner = (dinner) => {
+  addDinner = (dinner_name) => {
     let dinners = this.state.dinners.slice()
-    this.setState({dinners: dinners.concat(dinner)})
+    let new_dinner = {
+      dinner: dinner_name,
+      created: false 
+    }
+    this.setState({dinners: dinners.concat(new_dinner)})
   }
-  
+
   render() {
+    const created_dinners = this.state.dinners.filter((d) => d.created === true)
+    const uncreated_dinner = this.state.dinners.filter((d) => d.created === false)
+                                            .map((dinner_obj) => dinner_obj.dinner)
     return (
         <div className="App">
-          <DinnerList dinners={this.state.dinners}/>
-          <CreateDinner />
+          <DinnerList dinners={created_dinners}/>
+          <CreateDinner dinner={uncreated_dinner}/>
           <AddDinnerButton handleSubmit={this.addDinner}/>
         </div>
     );

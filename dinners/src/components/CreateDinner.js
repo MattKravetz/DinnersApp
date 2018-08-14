@@ -11,6 +11,7 @@ export default class CreateDinner extends Component {
             ingredients: [],
         }
         this.addIngredient = this.addIngredient.bind(this)
+        this.clearIngredient = this.addIngredient.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.props.handlesubmit
     }
@@ -34,16 +35,18 @@ export default class CreateDinner extends Component {
         this.setState(new_state)
     }
     
+    clearIngredient(){
+        this.setState({
+            new_ingredient_name: "",
+            new_ingredient_quantity: ""
+        })
+    }
     render(){
 
         const dinner = this.props.dinner;
-        console.log("in render", this.state.ingredients)
         let ingredients = this.state.ingredients.map((val, num) => {
-            console.log("creating ingredient", val)
             return (
-                <li key={num}>
-                    <Ingredient name={val.name} quantity={val.quantity} />  
-                </li>
+                <Ingredient name={val.name} quantity={val.quantity} num={num} key={"ing-"+num}/>  
             );
         });
 
@@ -52,9 +55,16 @@ export default class CreateDinner extends Component {
                 <div className="create-dinner">
                     <h1>Create Dinner</h1>
                     <h2>{dinner}</h2>
-                    <ul>
-                        {ingredients}                    
-                    </ul>
+                    <div className="ingredient-table">
+                        <table>
+                            <tbody>
+                                <tr key="headerKey">
+                                    <th>{ingredients.keys()}</th>
+                                </tr>
+                                {ingredients}                    
+                            </tbody>                        
+                        </table>
+                    </div>
                     <input 
                         type="text"
                         name="new_ingredient_name"
@@ -73,6 +83,7 @@ export default class CreateDinner extends Component {
                             onClick={(e) => {
                                 e.preventDefault();
                                 this.addIngredient()
+                                this.clearIngredient()                                
                             }}>
                             Submit
                         </button>

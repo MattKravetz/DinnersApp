@@ -1,38 +1,26 @@
 import React, { Component } from 'react'
 
-export default class Ingredient extends Component {
-    constructor(props){
-        super(props)
-        
-        this.state = {
-            name: this.props.name,
-            quantity: this.props.quantity,
-        }
-    
-    }
-
-    render(){            
-        return(
-            <tr key={this.props.num}>
-                <td>
-                    <input 
-                        type="text"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.props.handleChange}
-                    />
-                </td>
-                <td>
-                    <input 
-                        type="text"
-                        name="quantity"
-                        value={this.state.quantity}
-                        onChange={this.props.handleChange}
-                    />
-                </td>
-            </tr>
-        );
-    }
-    
+export default function Ingredient(props) {    
+    return(
+        <tr key={props.num}>
+            <td>
+                <input 
+                    type="text"
+                    name="name"
+                    value={props.name}
+                    onChange={props.handleChange}
+                    onKeyDown={props.onKeyPress}
+                />
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    name="quantity"
+                    value={props.quantity}
+                    onChange={props.handleChange}
+                    onKeyDown={props.onKeyPress}
+                />
+            </td>
+        </tr>
+    );
 }
-

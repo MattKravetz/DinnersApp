@@ -8,39 +8,57 @@ import Ingredient from './Ingredient'
 export default class EditDinner extends React.Component {
     constructor(props){
         super(props)
-        this.handleChange = this.handleChange.bind(this)
-        this.state = {
-            dinner: {
-                ingredient: "",
-                quantity: ""
-            }
-        }
+    }
+        
+    updateDinnerIngredient(property, val, target_id){
+        let new_dinner = {...this.props.dinner}
+        
+        new_dinner.ingredients = new_dinner.ingredients.map((ing) => {
+            if (ing.id === target_id) {                    
+                return ({
+                    ...ing,
+                    [property]: val
+                })
+            }        
+            return ing        
+        })
+               
+        this.props.updateDinner(new_dinner)
     }
 
-    // add handlechange for Ingredient
-    handleChange(event){
-        const name = event.target.name
-        this.setState({
-            dinner: {
-                [name]: event.target.value
-            }
-        })        
+    addIngredient(e) {
+        // On enter, consider this ingredient submitted.  Add a new blank empty to the list
+        let new_dinner = {...this.props.dinner}
+        const new_id = this.props.dinner.ingredient_inc + 1
+        const last_ingredient = this.props.dinner.ingredients[0]
+        const enterKeycode = 13
+        if (e.keyCode === enterKeycode && last_ingredient.name !== "")  { 
+            console.log("entered!")
+            new_dinner.ingredients.unshift({
+                id: this.props.dinner.id + "ing-" + new_id,
+                name: "",
+                quantity: "",
+            })
+            new_dinner.ingredient_inc = new_id
+        }
+        
+        this.props.updateDinner(new_dinner)
     }
 
     render(){
-        //console.log("editing! ", this.state)
-        const dinner = this.state.dinner
-        //const ingredients = <tr></tr>;
-        let ingredients = dinner.ingredients.map((ing, num) => (
-            <Ingredient name={ing.name} quantity={ing.quantity} num={num} handleChange={this.handleChange}/>
-        ))
-        
-        if (ingredients.length === 0) {
-            console.log("empty!")
-            ingredients = <Ingredient num={0} handleChange={this.handleChange}/>
-        }
+        const dinner = this.props.dinner        
+        let ingredients = dinner.ingredients.map((ing) =>  {
+            return (
+                <Ingredient name={ing.name}
+                            quantity={ing.quantity}
+                            id={ing.id} 
+                            handleChange={(e) => this.updateDinnerIngredient(e.target.name,
+                                                                             e.target.value,
+                                                                             ing.id)}
+                            onKeyPress={(e) => this.addIngredient(e)}/>            
+            )}
+        )
 
-        console.log("ingredients", ingredients)
         return (
             <div className="create-dinner">
             <h1>Edit Dinner</h1>
@@ -56,11 +74,6 @@ export default class EditDinner extends React.Component {
                     </tbody>                        
                 </Table>
             </div>                    
-            <button 
-                    type="submit"                            
-                    onClick={(e) => this.handleSubmit(dinner)}>
-                    Submit
-            </button>
         </div>
         )
     }

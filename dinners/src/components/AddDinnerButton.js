@@ -19,14 +19,13 @@ class AddDinnerButton extends Component {
     render(){
         return (
             <div className="add-dinner">
-                <h1>Add Dinner</h1>
                     <form className="add-dinner-button">
                         <label>
                             <input 
                                 type="text"
                                 value={this.state.value}
                                 onChange={this.handleChange}
-                                placeholder="Dinner Name"
+                                placeholder="New Dinner"
                             />
                         </label>
                             <button 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dinner from './Dinner'
+import AddDinerButton from './AddDinnerButton'
 
 class DinnerList extends Component {
 
@@ -7,7 +8,7 @@ class DinnerList extends Component {
         let dinners = this.props.dinners.map((dinner, num) => {
             return(
                 <li key={num}>
-                    <Dinner name={dinner}/>
+                    <Dinner dinner={dinner} onClick={this.props.editDinner}/>
                 </li>
             );
         })
@@ -18,6 +19,7 @@ class DinnerList extends Component {
                 <div className='dinner-boxes'>
                     <ol>{dinners}</ol>
                 </div>
+                <AddDinerButton handleSubmit={this.props.addDinner}/>
             </div>
         );
     }

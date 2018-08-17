@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 
-function Dinner(props) {
-    return (
-        <div>{props.name}</div>
-    );
+export default function Dinner(props) {
+    return (<div onClick={(e) => props.onClick(props.dinner.id)}>{props.dinner.name}</div>)
 }
 
-export default Dinner;
+

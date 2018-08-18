@@ -4,17 +4,17 @@ import "./App.css";
 import EditDinner from "./components/EditDinner";
 import DinnerList from "./components/DinnerList";
 
-import uuid from './utils/uuid'
+import uuid from "./utils/uuid";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     // get cached state, if it exists
-    const cachedState = JSON.parse(localStorage.getItem("state"))
+    const cachedState = JSON.parse(localStorage.getItem("state"));
     this.state = cachedState || {
       dinners: [],
-      editing: null,
+      editing: null
     };
 
     this.addDinner = this.addDinner.bind(this);
@@ -22,10 +22,19 @@ class App extends Component {
     this.updateDinner = this.updateDinner.bind(this);
     this.updateCache = this.updateCache.bind(this);
     this.deleteDinner = this.deleteDinner.bind(this);
+
+    console.log(this.state);
+  }
+
+  componentDidMount() {
+    // if starting fresh, add a blank dinner
+    if (this.state.dinners.length === 0) {
+      this.addDinner("");
+    }
   }
 
   updateCache() {
-    localStorage.setItem("state", JSON.stringify(this.state))
+    localStorage.setItem("state", JSON.stringify(this.state));
   }
 
   addDinner(dinner_name) {
@@ -39,19 +48,19 @@ class App extends Component {
           name: "",
           quantity: ""
         }
-      ],
+      ]
     };
 
     this.setState({
-      dinners: dinners.concat(new_dinner),
+      dinners: dinners.concat(new_dinner)
     });
-    this.updateCache()
+    this.updateCache();
   }
 
   editDinner(dinner_id) {
     const dinner = this.state.dinners.filter(d => d.id === dinner_id)[0];
     this.setState({ editing: dinner });
-    this.updateCache()
+    this.updateCache();
   }
 
   updateDinner(dinner) {
@@ -66,20 +75,22 @@ class App extends Component {
       dinners: updated_dinners,
       editing: dinner
     });
-    this.updateCache()
+    this.updateCache();
   }
 
   deleteDinner(dinner_id) {
-    const new_dinners = this.state.dinners.slice().filter( d => d.id !==  dinner_id )
+    const new_dinners = this.state.dinners
+      .slice()
+      .filter(d => d.id !== dinner_id);
     this.setState({
       dinners: new_dinners
-    })
-    this.updateCache()
+    });
+    this.updateCache();
   }
 
   render() {
     const dinners = this.state.dinners;
-    //console.log(this.state.editing)
+    console.log(this.state)
     return (
       <div className="App">
         <DinnerList

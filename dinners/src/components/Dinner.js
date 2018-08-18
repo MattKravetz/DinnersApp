@@ -1,28 +1,57 @@
 import React, { Component } from "react";
-import { Button } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Grid from "@material-ui/core/Grid";
+import { Grid, Input } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
-export default function Dinner(props) {
-  const MAX_LENGTH = 12;
+export default class Dinner extends Component {
+  /*const MAX_LENGTH = 12;
   let dinner_name = props.dinner.name.slice(0, MAX_LENGTH);
   if (dinner_name.length < props.dinner.name.length) {
     dinner_name += "...";
+  }*/
+
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  return (
-    <Grid container spacing={24}>
-      <Grid item xs={9}>
-        <Button className="" onClick={e => props.onClick(props.dinner.id)}>
-          {dinner_name}
-        </Button>
-      </Grid>
-      <Grid item xs={3}>
-        <DeleteIcon
-          className="dinner-list-item-icon"
-          onClick={e => props.deleteDinner(props.dinner.id)}
-        />
-      </Grid>
-    </Grid>
-  );
-}
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleKeyPress(event) {
+    if (event.key === "Enter" && this.state.value !== "") {
+      this.props.addDinner(this.state.value);
+    }
+  }
+
+  render(){
+    return (
+        <Grid container spacing={24}>
+          <Grid item xs={9}>
+            <Input
+                autoFocus
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+                onKeyPress={(e) => this.handleKeyPress(e)}
+                placeholder="New Dinner"
+            />
+          </Grid>
+          <Grid item xs={1}>
+            <EditIcon
+                onClick={e => this.props.editDinner(this.props.dinner.id)}
+            />        
+          </Grid>
+          <Grid item xs={1}>
+            <DeleteIcon
+              onClick={e => this.props.deleteDinner(this.props.dinner.id)}
+            />
+          </Grid>
+        </Grid>
+      );
+    }
+  }
+  

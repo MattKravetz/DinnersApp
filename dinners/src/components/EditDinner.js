@@ -1,7 +1,9 @@
 import React from "react";
+import {Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core'
 
 import Ingredient from "./Ingredient";
 import uuid from "../utils/uuid";
+
 
 export default class EditDinner extends React.Component {
   constructor(props) {
@@ -61,15 +63,17 @@ export default class EditDinner extends React.Component {
         <h1>Edit Dinner</h1>
         <h2>{dinner.name}</h2>
         <div className="ingredient-table">
-          <table>
-            <tbody>
-              <tr key="headerKey">
-                <th>Ingredient</th>
-                <th>Quantity</th>
-              </tr>
+          <Table>            
+              <TableHead key="headerKey">
+                <TableRow>
+                    <TableCell>Ingredient</TableCell>
+                    <TableCell>Quantity</TableCell>
+                </TableRow>                
+              </TableHead>
+            <TableBody>
               {ingredients}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 
 import Ingredient from "./Ingredient";
+import uuid from "../utils/uuid";
 
 export default class EditDinner extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ export default class EditDinner extends React.Component {
 
   updateDinnerIngredient(property, val, target_id) {
     let new_dinner = { ...this.props.dinner };
-
     new_dinner.ingredients = new_dinner.ingredients.map(ing => {
       if (ing.id === target_id) {
         return {
@@ -26,17 +26,15 @@ export default class EditDinner extends React.Component {
   addIngredient(e) {
     // On enter, consider this ingredient submitted.  Add a new blank empty to the list
     let new_dinner = { ...this.props.dinner };
-    const new_id = this.props.dinner.ingredient_inc + 1;
     const last_ingredient = this.props.dinner.ingredients[0];
     const enterKeycode = 13;
     if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
       console.log("entered!");
-      new_dinner.ingredients.unshift({
-        id: this.props.dinner.id + "ing-" + new_id,
+      new_dinner.ingredients.push({
+        id: uuid(),
         name: "",
         quantity: ""
       });
-      new_dinner.ingredient_inc = new_id;
     }
 
     this.props.updateDinner(new_dinner);

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Dinner from "./Dinner";
 import AddDinerButton from "./AddDinnerButton";
+import uuid from '../utils/uuid'
 
 class DinnerList extends Component {
   render() {
-    let dinners = this.props.dinners.map((dinner, num) => {
+    let dinners = this.props.dinners.map((dinner) => {
       return (
-        <li key={num}>
+        <li key={uuid()}>
           <Dinner dinner={dinner} onClick={this.props.editDinner} />
         </li>
       );

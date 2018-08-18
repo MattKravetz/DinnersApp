@@ -51,7 +51,7 @@ export default class EditDinner extends React.Component {
         <Ingredient
           name={ing.name}
           quantity={ing.quantity}
-          id={ing.id}
+          key={ing.id}
           handleChange={e =>
             this.updateDinnerIngredient(e.target.name, e.target.value, ing.id)
           }

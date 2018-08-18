@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default function Ingredient(props) {
   return (
-    <tr key={props.num}>
+    <tr>
       <td>
         <input
           type="text"

@@ -15,7 +15,6 @@ class App extends Component {
     this.state = cachedState || {
       dinners: [],
       editing: null,
-      //dinner_inc: 0 // increment when a dinner is added.  Store in state so that dinners can be removed, reordreded, etc
     };
 
     this.addDinner = this.addDinner.bind(this);
@@ -30,25 +29,20 @@ class App extends Component {
 
   addDinner(dinner_name) {
     let dinners = this.state.dinners.slice();
-    const new_dinner_id = this.state.dinner_inc + 1;
     const new_dinner = {
-      //id: "dinner-" + new_dinner_id, // todo: use a uuid-generating util
       id: uuid(),
       name: dinner_name,
       ingredients: [
         {
           id: uuid(),
-          //id: "dinner-" + new_dinner_id + "-ing-0",
           name: "",
           quantity: ""
         }
       ],
-      //ingredient_inc: 0 // increment when an ing is added.  Store in state so that ingredients can be removed, reordreded, etc      
     };
 
     this.setState({
       dinners: dinners.concat(new_dinner),
-      //dinner_inc: new_dinner_id
     });
     this.updateCache()
   }

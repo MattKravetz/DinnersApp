@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AddDinnerButton extends Component {
+export default class AddDinner extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
@@ -42,5 +42,3 @@ class AddDinnerButton extends Component {
     );
   }
 }
-
-export default AddDinnerButton;

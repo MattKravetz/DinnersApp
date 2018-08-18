@@ -26,17 +26,17 @@ export default class EditDinner extends React.Component {
   addIngredient(e) {
     // On enter, consider this ingredient submitted.  Add a new blank empty to the list
     let new_dinner = { ...this.props.dinner };
-    const last_ingredient = this.props.dinner.ingredients[0];
+    const last_ingredient = this.props.dinner.ingredients.slice(-1)[0];
+    const new_id = uuid();
     const enterKeycode = 13;
     if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
       console.log("entered!");
       new_dinner.ingredients.push({
-        id: uuid(),
+        id: new_id,
         name: "",
         quantity: ""
       });
     }
-
     this.props.updateDinner(new_dinner);
   }
 

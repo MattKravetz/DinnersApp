@@ -1,26 +1,33 @@
 import React, { Component } from "react";
 
-export default function Ingredient(props) {
-  return (
-    <tr>
-      <td>
-        <input
-          type="text"
-          name="name"
-          value={props.name}
-          onChange={props.handleChange}
-          onKeyDown={props.onKeyPress}
-        />
-      </td>
-      <td>
-        <input
-          type="text"
-          name="quantity"
-          value={props.quantity}
-          onChange={props.handleChange}
-          onKeyDown={props.onKeyPress}
-        />
-      </td>
-    </tr>
-  );
+export default class Ingredient extends Component {
+
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return (
+            <tr>
+            <td>
+                <input
+                autoFocus
+                type="text"
+                name="name"                
+                value={this.props.name}
+                onChange={this.props.handleChange}
+                onKeyDown={this.props.onKeyPress}
+                />
+            </td>
+            <td>
+                <input
+                type="text"
+                name="quantity"
+                value={this.props.quantity}
+                onChange={this.props.handleChange}
+                onKeyDown={this.props.onKeyPress}
+                />
+            </td>
+            </tr>
+        );
+    }
 }

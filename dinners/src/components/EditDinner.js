@@ -1,5 +1,5 @@
 import React from "react";
-import {Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core'
+import {Card, Table, TableBody, TableHead, TableRow, TableCell, CardContent, CardHeader} from '@material-ui/core'
 
 import Ingredient from "./Ingredient";
 import uuid from "../utils/uuid";
@@ -59,10 +59,9 @@ export default class EditDinner extends React.Component {
     });
 
     return (
-      <div className="create-dinner">
-        <h1>Edit Dinner</h1>
-        <h2>{dinner.name}</h2>
-        <div className="ingredient-table">
+      <Card className="create-dinner">
+        <CardHeader title="Edit Dinner" subtitle={dinner.name}/>
+        <CardContent>
           <Table>            
               <TableHead key="headerKey">
                 <TableRow>
@@ -74,8 +73,8 @@ export default class EditDinner extends React.Component {
               {ingredients}
             </TableBody>
           </Table>
-        </div>
-      </div>
+        </CardContent>  
+      </Card>
     );
   }
 }

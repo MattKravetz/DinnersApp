@@ -3,7 +3,7 @@ import Dinner from "./Dinner";
 import AddDinerButton from "./AddDinnerButton";
 import uuid from '../utils/uuid'
 
-import {List, ListItem} from "@material-ui/core";
+import {List, ListItem, Typography, Paper} from "@material-ui/core";
 
 class DinnerList extends Component {
   render() {
@@ -16,13 +16,11 @@ class DinnerList extends Component {
     });
 
     return (
-      <div className="dinner-list">
-        <h1 className="main-header">Dinners for the week</h1>
-        <div className="dinner-boxes">
-          <List>{dinners}</List>
-        </div>
+      <Paper>
+        <Typography variant="display2">Dinners for the week</Typography>
+        <List>{dinners}</List>
         <AddDinerButton handleSubmit={this.props.addDinner} />
-      </div>
+      </Paper>
     );
   }
 }

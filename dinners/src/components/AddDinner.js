@@ -1,15 +1,24 @@
 import React, { Component } from "react";
+import { Input } from "@material-ui/core";
 
 export default class AddDinner extends Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.clearInput = this.clearInput.bind(this);
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
+  }
+
+  handleKeyPress(event) {
+    if (event.key === "Enter" && this.state.value !== "") {
+      this.props.handleSubmit(this.state.value);
+      this.clearInput();
+    }
   }
 
   clearInput() {
@@ -18,27 +27,13 @@ export default class AddDinner extends Component {
 
   render() {
     return (
-      <div className="add-dinner">
-        <form className="add-dinner-button">
-          <label>
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-              placeholder="New Dinner"
-            />
-          </label>
-          <button
-            onClick={e => {
-              e.preventDefault();
-              this.props.handleSubmit(this.state.value);
-              this.clearInput();
-            }}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+      <Input
+        type="text"
+        value={this.state.value}
+        onChange={this.handleChange}
+        onKeyPress={(e) => this.handleKeyPress(e)}
+        placeholder="New Dinner"
+      />
     );
   }
 }

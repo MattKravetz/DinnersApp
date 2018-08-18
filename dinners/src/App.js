@@ -21,6 +21,7 @@ class App extends Component {
     this.editDinner = this.editDinner.bind(this);
     this.updateDinner = this.updateDinner.bind(this);
     this.updateCache = this.updateCache.bind(this);
+    this.deleteDinner = this.deleteDinner.bind(this);
   }
 
   updateCache() {
@@ -68,6 +69,14 @@ class App extends Component {
     this.updateCache()
   }
 
+  deleteDinner(dinner_id) {
+    const new_dinners = this.state.dinners.slice().filter( d => d.id !==  dinner_id )
+    this.setState({
+      dinners: new_dinners
+    })
+    this.updateCache()
+  }
+
   render() {
     const dinners = this.state.dinners;
     //console.log(this.state.editing)
@@ -77,6 +86,7 @@ class App extends Component {
           dinners={dinners}
           addDinner={this.addDinner}
           editDinner={this.editDinner}
+          deleteDinner={this.deleteDinner}
         />
         {this.state.editing ? (
           <EditDinner

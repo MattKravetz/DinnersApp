@@ -17,3 +17,19 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.dinner-list-item {
+  display: table; 
+  width: 100px;
+  height: 50px;  
+}
+
+.dinner-list-item-name {
+  display: table-cell;
+  text-align: left;
+}
+
+.dinner-list-item-icon {
+  display: table-cell;
+  text-align: right;
+}

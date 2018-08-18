@@ -32,7 +32,6 @@ export default class EditDinner extends React.Component {
     const new_id = uuid();
     const enterKeycode = 13;
     if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
-      console.log("entered!");
       new_dinner.ingredients.push({
         id: new_id,
         name: "",
@@ -57,10 +56,10 @@ export default class EditDinner extends React.Component {
         />
       );
     });
-
+    console.log(this.props.dinner.name, dinner.name)
     return (
       <Card className="create-dinner">
-        <CardHeader title="Edit Dinner" subtitle={dinner.name}/>
+        <CardHeader title={dinner.name}/>
         <CardContent>
           <Table>            
               <TableHead key="headerKey">

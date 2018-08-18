@@ -1,81 +1,81 @@
-import React from 'react'
+import React from "react";
 
-import { Table } from 'react-bootstrap'
+import { Table } from "react-bootstrap";
 
-import Ingredient from './Ingredient'
-
+import Ingredient from "./Ingredient";
 
 export default class EditDinner extends React.Component {
-    constructor(props){
-        super(props)
-    }
-        
-    updateDinnerIngredient(property, val, target_id){
-        let new_dinner = {...this.props.dinner}
-        
-        new_dinner.ingredients = new_dinner.ingredients.map((ing) => {
-            if (ing.id === target_id) {                    
-                return ({
-                    ...ing,
-                    [property]: val
-                })
-            }        
-            return ing        
-        })
-               
-        this.props.updateDinner(new_dinner)
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    addIngredient(e) {
-        // On enter, consider this ingredient submitted.  Add a new blank empty to the list
-        let new_dinner = {...this.props.dinner}
-        const new_id = this.props.dinner.ingredient_inc + 1
-        const last_ingredient = this.props.dinner.ingredients[0]
-        const enterKeycode = 13
-        if (e.keyCode === enterKeycode && last_ingredient.name !== "")  { 
-            console.log("entered!")
-            new_dinner.ingredients.unshift({
-                id: this.props.dinner.id + "ing-" + new_id,
-                name: "",
-                quantity: "",
-            })
-            new_dinner.ingredient_inc = new_id
-        }
-        
-        this.props.updateDinner(new_dinner)
+  updateDinnerIngredient(property, val, target_id) {
+    let new_dinner = { ...this.props.dinner };
+
+    new_dinner.ingredients = new_dinner.ingredients.map(ing => {
+      if (ing.id === target_id) {
+        return {
+          ...ing,
+          [property]: val
+        };
+      }
+      return ing;
+    });
+
+    this.props.updateDinner(new_dinner);
+  }
+
+  addIngredient(e) {
+    // On enter, consider this ingredient submitted.  Add a new blank empty to the list
+    let new_dinner = { ...this.props.dinner };
+    const new_id = this.props.dinner.ingredient_inc + 1;
+    const last_ingredient = this.props.dinner.ingredients[0];
+    const enterKeycode = 13;
+    if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
+      console.log("entered!");
+      new_dinner.ingredients.unshift({
+        id: this.props.dinner.id + "ing-" + new_id,
+        name: "",
+        quantity: ""
+      });
+      new_dinner.ingredient_inc = new_id;
     }
 
-    render(){
-        const dinner = this.props.dinner        
-        let ingredients = dinner.ingredients.map((ing) =>  {
-            return (
-                <Ingredient name={ing.name}
-                            quantity={ing.quantity}
-                            id={ing.id} 
-                            handleChange={(e) => this.updateDinnerIngredient(e.target.name,
-                                                                             e.target.value,
-                                                                             ing.id)}
-                            onKeyPress={(e) => this.addIngredient(e)}/>            
-            )}
-        )
+    this.props.updateDinner(new_dinner);
+  }
 
-        return (
-            <div className="create-dinner">
-            <h1>Edit Dinner</h1>
-            <h2>{dinner.name}</h2>
-            <div className="ingredient-table">
-                <Table>
-                    <tbody>
-                        <tr key="headerKey">
-                            <th>Ingredient</th>
-                            <th>Quantity</th>
-                        </tr>
-                        {ingredients}                                
-                    </tbody>                        
-                </Table>
-            </div>                    
+  render() {
+    const dinner = this.props.dinner;
+    let ingredients = dinner.ingredients.map(ing => {
+      return (
+        <Ingredient
+          name={ing.name}
+          quantity={ing.quantity}
+          id={ing.id}
+          handleChange={e =>
+            this.updateDinnerIngredient(e.target.name, e.target.value, ing.id)
+          }
+          onKeyPress={e => this.addIngredient(e)}
+        />
+      );
+    });
+
+    return (
+      <div className="create-dinner">
+        <h1>Edit Dinner</h1>
+        <h2>{dinner.name}</h2>
+        <div className="ingredient-table">
+          <Table>
+            <tbody>
+              <tr key="headerKey">
+                <th>Ingredient</th>
+                <th>Quantity</th>
+              </tr>
+              {ingredients}
+            </tbody>
+          </Table>
         </div>
-        )
-    }
+      </div>
+    );
+  }
 }
-

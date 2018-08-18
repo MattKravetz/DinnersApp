@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Table } from "react-bootstrap";
-
 import Ingredient from "./Ingredient";
 
 export default class EditDinner extends React.Component {
@@ -65,7 +63,7 @@ export default class EditDinner extends React.Component {
         <h1>Edit Dinner</h1>
         <h2>{dinner.name}</h2>
         <div className="ingredient-table">
-          <Table>
+          <table>
             <tbody>
               <tr key="headerKey">
                 <th>Ingredient</th>
@@ -73,7 +71,7 @@ export default class EditDinner extends React.Component {
               </tr>
               {ingredients}
             </tbody>
-          </Table>
+          </table>
         </div>
       </div>
     );

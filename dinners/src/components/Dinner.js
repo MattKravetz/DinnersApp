@@ -4,26 +4,26 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
 export default class Dinner extends Component {
-  /*const MAX_LENGTH = 12;
-  let dinner_name = props.dinner.name.slice(0, MAX_LENGTH);
-  if (dinner_name.length < props.dinner.name.length) {
-    dinner_name += "...";
-  }*/
 
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    //this.state = { value: this.props.dinner.name };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    //this.setState({ value: event.target.value });
+    const new_dinner = { 
+        ...this.props.dinner,
+        name: event.target.value
+    }
+    this.props.updateDinner(new_dinner)
   }
 
   handleKeyPress(event) {
-    if (event.key === "Enter" && this.state.value !== "") {
-      this.props.addDinner(this.state.value);
+    if (event.key === "Enter" && this.props.dinner.name !== "") {
+      this.props.focusNext();
     }
   }
 
@@ -34,7 +34,7 @@ export default class Dinner extends Component {
             <Input
                 autoFocus
                 type="text"
-                value={this.state.value}
+                value={this.props.dinner.name}
                 onChange={this.handleChange}
                 onKeyPress={(e) => this.handleKeyPress(e)}
                 placeholder="New Dinner"

@@ -1,9 +1,14 @@
 import React from "react";
-import {Card, CardContent, Grid, CardHeader, Typography} from '@material-ui/core'
+import {
+  Card,
+  CardContent,
+  Grid,
+  CardHeader,
+  Typography
+} from "@material-ui/core";
 
 import Ingredient from "./Ingredient";
 import uuid from "../utils/uuid";
-
 
 export default class EditDinner extends React.Component {
   constructor(props) {
@@ -30,32 +35,35 @@ export default class EditDinner extends React.Component {
     const last_ingredient = this.props.dinner.ingredients.slice(-1)[0];
     const enterKeycode = 13;
     if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
-        this.addIngredient()
-    }    
+      this.addIngredient();
+    }
   }
 
-
-  addIngredient(){
+  addIngredient() {
     let new_dinner = { ...this.props.dinner };
-    const new_id = uuid();
     new_dinner.ingredients.push({
-        id: new_id,
-        name: "",
-        quantity: ""
-      });
+      id: uuid(),
+      name: "",
+      quantity: ""
+    });
     this.props.updateDinner(new_dinner);
   }
 
-  deleteIngredient(target_id){
-    
-    let new_dinner = { ...this.props.dinner }
-      new_dinner.ingredients = new_dinner.ingredients.filter(ing => ing.id !== target_id)
-      this.props.updateDinner(new_dinner)
+  deleteIngredient(target_id) {
 
+    let new_dinner = { ...this.props.dinner };
+    new_dinner.ingredients = new_dinner.ingredients.filter(
+      ing => ing.id !== target_id
+    );
     // Add a blank ingredient if the list was cleared
-    if (this.props.ingredients.length === 0) {
-        this.addIngredient()
+    if (new_dinner.ingredients.length === 0) {      
+      new_dinner.ingredients.push({
+        id: uuid(),
+        name: "",
+        quantity: ""
+      });
     }
+    this.props.updateDinner(new_dinner);
   }
 
   render() {
@@ -71,29 +79,29 @@ export default class EditDinner extends React.Component {
             this.updateDinnerIngredient(e.target.name, e.target.value, ing.id)
           }
           onKeyPress={e => this.handleKeyPress(e)}
-          deleteIngredient={e => this.deleteIngredient(e)}        
+          deleteIngredient={e => this.deleteIngredient(e)}
         />
       );
     });
-    console.log(this.props.dinner.name, dinner.name)
+
     return (
       <Card className="create-dinner">
-        <CardHeader title={dinner.name}/>
-            <CardContent>
-            <Grid container spacing={24}>
-                <Grid item xs={4}>
-                    <Typography variant="subheading" align="center">
-                        Ingredient
-                    </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                    <Typography variant="subheading" align="center">
-                        Quantity
-                    </Typography>                    
-                </Grid>
-            </Grid>            
-            {ingredients}
-        </CardContent>  
+        <CardHeader title={dinner.name} />
+        <CardContent>
+          <Grid container spacing={24}>
+            <Grid item xs={4}>
+              <Typography variant="subheading" align="center">
+                Ingredient
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Typography variant="subheading" align="center">
+                Quantity
+              </Typography>
+            </Grid>
+          </Grid>
+          {ingredients}
+        </CardContent>
       </Card>
     );
   }

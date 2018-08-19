@@ -98,6 +98,7 @@ class App extends Component {
           addDinner={this.addDinner}
           editDinner={this.editDinner}
           deleteDinner={this.deleteDinner}
+          updateDinner={this.updateDinner}
         />
         {this.state.editing ? (
           <EditDinner

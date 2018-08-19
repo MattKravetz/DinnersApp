@@ -15,6 +15,7 @@ class DinnerList extends Component {
             addDinner={this.props.addDinner}
             editDinner={this.props.editDinner}
             deleteDinner={this.props.deleteDinner}
+            updateDinner={this.props.updateDinner}
           />
         </ListItem>
       );

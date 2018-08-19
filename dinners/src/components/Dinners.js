@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Input, IconButton, Typography } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 
-export default class Dinner extends Component {
+
+export default class Dinners extends Component {
   constructor(props) {
     super(props);
     // make function!

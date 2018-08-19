@@ -51,13 +51,14 @@ class Ingredient extends Component {
             classes={{
               root: classes.root,
               checked: classes.checked,
-              size: classes.size,
-              sizeIcon: classes.sizeIcon
             }}
           />
         </Grid>
         <Grid item xs={1}>
-          <IconButton onClick={e => this.props.deleteIngredient(this.props.id)}>
+          <IconButton 
+            onClick={e => this.props.deleteIngredient(this.props.id)}
+            disabled={this.props.isBought}
+            >
             <DeleteIcon />
           </IconButton>
         </Grid>

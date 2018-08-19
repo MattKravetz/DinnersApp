@@ -44,7 +44,8 @@ export default class EditDinner extends React.Component {
     new_dinner.ingredients.push({
       id: uuid(),
       name: "",
-      quantity: ""
+      quantity: "",
+      isBought: false
     });
     this.props.updateDinner(new_dinner);
   }
@@ -60,11 +61,12 @@ export default class EditDinner extends React.Component {
       new_dinner.ingredients.push({
         id: uuid(),
         name: "",
-        quantity: ""
+        quantity: "",
+        isBought: false
       });
     }
     this.props.updateDinner(new_dinner);
-  }
+    }
 
   render() {
     const dinner = this.props.dinner;
@@ -80,6 +82,11 @@ export default class EditDinner extends React.Component {
           }
           onKeyPress={e => this.handleKeyPress(e)}
           deleteIngredient={e => this.deleteIngredient(e)}
+          isBought={ing.isBought}
+          flipBoughtState={e => {                        
+            const newBoughtState = e.target.checked
+            this.updateDinnerIngredient("isBought", newBoughtState, ing.id)
+            }}
         />
       );
     });

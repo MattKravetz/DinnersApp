@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import {withStyles} from '@material-ui/core'
-import Dinners from './Dinners'
+import { withStyles } from "@material-ui/core";
+import Dinners from "./Dinners";
+import ButtonAppBar from "./components/AppBar";
 
+const styles = theme => {};
 
-const styles = theme => {}
-
-function App(props)  {
-  return (     
+function App(props) {
+  return (
+    <div>
       <div>
-        <Dinners />
+        <ButtonAppBar />
       </div>
-  )}
+      <Dinners />
+    </div>
+  );
+}
 
-export default withStyles(styles)(App)
+export default withStyles(styles)(App);

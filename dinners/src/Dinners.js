@@ -122,9 +122,6 @@ class Dinners extends Component {
     console.log(this.state);
     return (
       <div>
-        <div>
-          <ButtonAppBar />
-        </div>
         <DinnerList
           dinners={dinners}
           addDinner={this.addDinner}

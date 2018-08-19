@@ -31,6 +31,10 @@ class App extends Component {
     if (this.state.dinners.length === 0) {
       this.addDinner("");
     }
+    // clean the currently editing dinner for a cleaner start
+    this.setState({
+      editing: null
+    })
   }
 
   updateCache() {

@@ -5,6 +5,7 @@ import uuid from "../utils/uuid";
 
 import { List, ListItem, Typography, Paper } from "@material-ui/core";
 
+
 class DinnerList extends Component {
   render() {
     let dinners = this.props.dinners.map(dinner => {
@@ -23,7 +24,7 @@ class DinnerList extends Component {
 
     return (
       <Paper>
-        <Typography variant="display2">Dinners for the week</Typography>
+        <Typography variant="display3">Dinners for the week</Typography>
         <List>{dinners}</List>
       </Paper>
     );

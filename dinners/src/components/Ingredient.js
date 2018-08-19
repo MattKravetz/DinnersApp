@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 
-import { Input } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import green from "@material-ui/core/colors/green";
+import { Input, Checkbox, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Grid from "@material-ui/core/Grid";
 
-export default class Ingredient extends Component {
+const styles = {
+  root: {
+    color: green[600],
+    "&$checked": {
+      color: green[500]
+    }
+  },
+  checked: {}
+};
+
+class Ingredient extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    const { classes } = this.props;
     return (
       <Grid container spacing={24}>
         <Grid item xs={5}>
@@ -24,16 +38,32 @@ export default class Ingredient extends Component {
         <Grid item xs={5}>
           <Input
             type="text"
-            name="quantity"            
+            name="quantity"
             value={this.props.quantity}
             onChange={this.props.handleChange}
             onKeyDown={this.props.onKeyPress}
           />
         </Grid>
-        <Grid item xs={2}>
-            <DeleteIcon onClick={(e) => this.props.deleteIngredient(this.props.id)}/>
+        <Grid item xs={1}>
+          <Checkbox
+            checked={this.props.isBought}
+            onChange={this.props.flipBoughtState}
+            classes={{
+              root: classes.root,
+              checked: classes.checked,
+              size: classes.size,
+              sizeIcon: classes.sizeIcon
+            }}
+          />
+        </Grid>
+        <Grid item xs={1}>
+          <IconButton onClick={e => this.props.deleteIngredient(this.props.id)}>
+            <DeleteIcon />
+          </IconButton>
         </Grid>
       </Grid>
     );
   }
 }
+
+export default withStyles(styles)(Ingredient);

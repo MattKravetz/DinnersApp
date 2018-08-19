@@ -8,7 +8,7 @@ import uuid from "./utils/uuid";
 import ButtonAppBar from "./components/AppBar";
 
 import { withStyles } from "@material-ui/core/styles";
-
+import { Button } from '@material-ui/core'
 
 class App extends Component {
   constructor(props) {
@@ -100,22 +100,6 @@ class App extends Component {
       .slice()
       .filter(d => d.id !== dinner_id);
 
-    if (new_dinners.length === 0) {
-      new_dinners = [
-        {
-          id: uuid(),
-          name: "",
-          ingredients: [
-            {
-              id: uuid(),
-              name: "",
-              quantity: ""
-            }
-          ]
-        }
-      ];
-    }
-
     // Delete from editing
     let new_editing;
     if (this.state.editing !== null) {
@@ -147,7 +131,8 @@ class App extends Component {
           deleteDinner={this.deleteDinner}
           updateDinner={this.updateDinner}
           editing={this.state.editing}
-        />        
+        />
+        <Button onClick={() => this.addDinner("New Dinner")}>Add Dinner</Button>
       </div>
     );
   }

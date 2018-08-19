@@ -16,16 +16,22 @@ class DinnerList extends Component {
     super(props);
 
     this.state = {
-        expanded: null
-    }
+      expanded: null
+    };
 
-    this.handleExpand = this.handleExpand.bind(this)
+    this.handleExpand = this.handleExpand.bind(this);
   }
 
   handleExpand(dinner_id) {
-    this.setState({
+    if (this.state.expanded === dinner_id) {
+      this.setState({
+        expanded: null
+      });
+    } else {
+      this.setState({
         expanded: dinner_id
-    })
+      });
+    }
   }
 
   render() {
@@ -35,8 +41,8 @@ class DinnerList extends Component {
           key={dinner.id}
           expanded={this.state.expanded == dinner.id}
           onChange={() => this.handleExpand(dinner.id)}
-        >        
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+        >
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Dinner
               dinner={dinner}
               addDinner={this.props.addDinner}

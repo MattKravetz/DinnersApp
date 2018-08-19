@@ -24,8 +24,8 @@ class Ingredient extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container spacing={24}>
-        <Grid item xs={5}>
+      <Grid container spacing={16}>
+        <Grid item xs={3}>
           <Input
             autoFocus
             type="text"
@@ -35,7 +35,7 @@ class Ingredient extends Component {
             onKeyDown={this.props.onKeyPress}
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={3}>
           <Input
             type="text"
             name="quantity"

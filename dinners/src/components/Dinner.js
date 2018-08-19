@@ -29,7 +29,7 @@ export default class Dinner extends Component {
   render() {
     return (
       <Grid container spacing={24}>
-        <Grid item xs={9}>
+        <Grid item xs={10}>
           <Input
             autoFocus
             type="text"

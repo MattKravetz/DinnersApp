@@ -97,18 +97,23 @@ export default class EditDinner extends React.Component {
         <CardContent>
           <Grid container spacing={24}>
             <Grid item xs={5}>
-              <Typography variant="subheading" align="center">
+              <Typography variant="subheading">
                 Ingredient
               </Typography>
             </Grid>
             <Grid item xs={5}>
-              <Typography variant="subheading" align="center">
+              <Typography variant="subheading">
                 Quantity
               </Typography>
             </Grid>
             <Grid item xs={1}>
-              <Typography variant="subheading" align="center">
+              <Typography variant="subheading">
                 Bought
+              </Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography variant="subheading">
+                Delete
               </Typography>
             </Grid>
           </Grid>

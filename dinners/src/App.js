@@ -5,6 +5,21 @@ import EditDinner from "./components/EditDinner";
 import DinnerList from "./components/DinnerList";
 
 import uuid from "./utils/uuid";
+import ButtonAppBar from "./components/AppBar";
+
+import { withStyles } from "@material-ui/core/styles";
+import green from "@material-ui/core/colors/green";
+import { Hidden } from "@material-ui/core";
+
+const styles = theme => ({
+  root: {
+    zIndex: 1,
+    height: 50,
+    position: "relative",
+    display: "flex",
+    flexDirection: "column"
+  }
+});
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +49,7 @@ class App extends Component {
     // clean the currently editing dinner for a cleaner start
     this.setState({
       editing: null
-    })
+    });
   }
 
   updateCache() {
@@ -129,10 +144,14 @@ class App extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const dinners = this.state.dinners;
     console.log(this.state);
     return (
-      <div className="App">
+      <div>
+        <div>
+          <ButtonAppBar />
+        </div>
         <DinnerList
           dinners={dinners}
           addDinner={this.addDinner}
@@ -151,4 +170,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

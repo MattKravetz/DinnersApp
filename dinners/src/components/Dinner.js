@@ -23,7 +23,7 @@ export default class Dinner extends Component {
 
   handleKeyPress(event) {
     if (event.key === "Enter" && this.props.dinner.name !== "") {
-      this.props.focusNext();
+      this.props.addDinner("");
     }
   }
 

@@ -71,26 +71,62 @@ class App extends Component {
         return dinner;
       }
     });
+
+    let new_editing;
+    if (this.state.editing !== null) {
+      new_editing =
+        dinner.id === this.state.editing.id ? dinner : this.state.editing;
+    } else {
+      new_editing = null;
+    }
+
     this.setState({
       dinners: updated_dinners,
-      editing: dinner
+      editing: new_editing
     });
     this.updateCache();
   }
 
   deleteDinner(dinner_id) {
-    const new_dinners = this.state.dinners
+    let new_dinners = this.state.dinners
       .slice()
       .filter(d => d.id !== dinner_id);
+
+    if (new_dinners.length === 0) {
+      new_dinners = [
+        {
+          id: uuid(),
+          name: "",
+          ingredients: [
+            {
+              id: uuid(),
+              name: "",
+              quantity: ""
+            }
+          ]
+        }
+      ];
+    }
+
+    // Delete from editing
+    let new_editing;
+    if (this.state.editing !== null) {
+      new_editing =
+        this.state.editing.id === dinner_id ? null : this.state.editing;
+    } else {
+      new_editing = null;
+    }
+
     this.setState({
-      dinners: new_dinners
+      dinners: new_dinners,
+      editing: new_editing
     });
     this.updateCache();
   }
 
   render() {
     const dinners = this.state.dinners;
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div className="App">
         <DinnerList

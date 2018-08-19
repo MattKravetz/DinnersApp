@@ -92,7 +92,7 @@ export default class EditDinner extends React.Component {
     });
 
     return (
-      <Card className="create-dinner">
+      <Card>
         <CardHeader title={dinner.name} />
         <CardContent>
           <Grid container spacing={24}>

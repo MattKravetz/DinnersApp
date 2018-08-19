@@ -42,6 +42,7 @@ export default class Dinner extends Component {
         <Grid item xs={1}>
           <IconButton
             onClick={e => this.props.editDinner(this.props.dinner.id)}
+            disabled={this.props.dinner.name === ""}
           >
             <EditIcon />
           </IconButton>
@@ -49,6 +50,7 @@ export default class Dinner extends Component {
         <Grid item xs={1}>
           <IconButton
             onClick={e => this.props.deleteDinner(this.props.dinner.id)}
+            disabled={this.props.dinner.name === ""}
           >
             <DeleteIcon />
           </IconButton>

@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import EditDinner from "./components/EditDinner";
 import DinnerList from "./components/DinnerList";
 
 import uuid from "./utils/uuid";
-import ButtonAppBar from "./components/AppBar";
 
-import { Button, withStyles } from '@material-ui/core'
+import { Button, withStyles } from "@material-ui/core";
+import { Route } from 'react-router-dom'
 
-const styles = theme => {}
+const styles = theme => {};
 
 class Dinners extends Component {
   constructor(props) {
@@ -122,6 +121,7 @@ class Dinners extends Component {
     console.log(this.state);
     return (
       <div>
+        <Route path='/dinners'/>
         <DinnerList
           dinners={dinners}
           addDinner={this.addDinner}
@@ -130,11 +130,16 @@ class Dinners extends Component {
           updateDinner={this.updateDinner}
           editing={this.state.editing}
         />
-        <Button variant="contained" color="primary" onClick={() => this.addDinner("New Dinner")}>Add Dinner</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => this.addDinner("New Dinner")}
+        >
+          Add Dinner
+        </Button>
       </div>
     );
   }
 }
 
-
-export default withStyles(styles)(Dinners)
+export default withStyles(styles)(Dinners);

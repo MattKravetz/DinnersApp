@@ -1,28 +1,16 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  Grid,
-  CardHeader,
-  Typography,
-  Input,
-  withStyles
-} from "@material-ui/core";
+import { Grid, Typography, withStyles } from "@material-ui/core";
 
 import Ingredient from "./Ingredient";
 import uuid from "../utils/uuid";
 
 const styles = theme => ({
-    root: {
-         flexGrow: 1
-      }
-  });
+  root: {
+    flexGrow: 1
+  }
+});
 
 class EditDinner extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   updateDinnerIngredient(property, val, target_id) {
     let new_dinner = { ...this.props.dinner };
     new_dinner.ingredients = new_dinner.ingredients.map(ing => {
@@ -121,4 +109,4 @@ class EditDinner extends React.Component {
   }
 }
 
-export default withStyles(styles)(EditDinner)
+export default withStyles(styles)(EditDinner);

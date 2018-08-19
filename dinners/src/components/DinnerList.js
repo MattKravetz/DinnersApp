@@ -39,7 +39,7 @@ class DinnerList extends Component {
       return (
         <ExpansionPanel
           key={dinner.id}
-          expanded={this.state.expanded == dinner.id}
+          expanded={this.state.expanded === dinner.id}
           onChange={() => this.handleExpand(dinner.id)}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

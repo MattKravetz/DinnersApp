@@ -4,7 +4,8 @@ import {
   CardContent,
   Grid,
   CardHeader,
-  Typography
+  Typography,
+  Input
 } from "@material-ui/core";
 
 import Ingredient from "./Ingredient";
@@ -14,6 +15,7 @@ export default class EditDinner extends React.Component {
   constructor(props) {
     super(props);
   }
+
 
   updateDinnerIngredient(property, val, target_id) {
     let new_dinner = { ...this.props.dinner };
@@ -93,7 +95,6 @@ export default class EditDinner extends React.Component {
 
     return (
       <Card>
-        <CardHeader title={dinner.name} />
         <CardContent>
           <Grid container spacing={24}>
             <Grid item xs={5}>

@@ -19,11 +19,12 @@ function Dinners(props) {
         deleteDinner={props.deleteDinner}
         updateDinner={props.updateDinner}
         editing={props.editing}
+        updateIngredientBoughtState={props.updateIngredientBoughtState}
       />
       <Button
         variant="contained"
         color="primary"
-        onClick={() => props.addDinner("New Dinner")}
+        onClick={() => props.addDinner("")}
       >
         Add Dinner
       </Button>

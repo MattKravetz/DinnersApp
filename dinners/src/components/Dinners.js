@@ -18,7 +18,7 @@ const styles = theme => ({
 class Dinners extends Component {
   constructor(props) {
     super(props);
-    this.state = { editing_dinner_name: false };
+    this.state = { editing_dinner_name:  this.props.dinner.name === "" ? true : false};
   }
 
   handleChange(val) {
@@ -30,9 +30,9 @@ class Dinners extends Component {
     this.props.updateDinner(new_dinner);
   }
 
-  setEditingState() {
+  setEditingState(state) {
     this.setState({
-      editing_dinner_name: !this.state.editing_dinner_name
+      editing_dinner_name: state || !this.state.editing_dinner_name
     });
   }
 
@@ -47,36 +47,30 @@ class Dinners extends Component {
         onChange={e => this.handleChange(e.target.value)}
         onKeyDown={e => {
           if (e.keyCode === 13) {
+            e.stopPropagation();
             this.setEditingState();
           }
         }}
         placeholder="New Dinner"
       />
     ) : (
-      <Typography
-        variant="display1"
-        onClick={e => {
-          e.stopPropagation();
-          this.setEditingState();
-        }}
-      >
-        {this.props.dinner.name}
-      </Typography>
+      <Typography variant="display1">{this.props.dinner.name}</Typography>
     );
-
+    
     return (
       <Grid container spacing={24}>
         <Grid item xs={10}>
           {header}
         </Grid>
         <Grid item xs={1}>
-          <IconButton>
-            <EditIcon
-              onClick={e => {
-                e.stopPropagation();
-                this.setEditingState();
-              }}
-            />
+          <IconButton
+            disabled={this.props.expanded}
+            onClick={e => {
+              e.stopPropagation();
+              this.setEditingState();
+            }}
+          >
+            <EditIcon />
           </IconButton>
         </Grid>
         <Grid item xs={1}>

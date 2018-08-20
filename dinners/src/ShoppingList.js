@@ -2,9 +2,9 @@ import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 
 import Ingredient from "./components/Ingredient";
+import ShoppingListItem from "./components/ShoppingListItem";
 
 export default function ShoppingList(props) {
-
   const ingredients = [].concat.apply(
     [],
     props.dinners.map(dinner => {
@@ -14,9 +14,13 @@ export default function ShoppingList(props) {
 
   const shopping_items = ingredients.map(ing => {
     return (
-      <Ingredient
+      <ShoppingListItem
         name={ing.name}
         quantity={ing.quantity}
+        isBought={ing.isBought}
+        updateBoughtState={ing_name =>
+          props.updateBoughtState(ing_name, !ing.isBought)
+        }
         id={ing.id}
         key={ing.id}
       />

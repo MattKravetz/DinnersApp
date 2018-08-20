@@ -79,10 +79,7 @@ class EditDinner extends React.Component {
           onKeyPress={e => this.handleKeyPress(e)}
           deleteIngredient={e => this.deleteIngredient(e)}
           isBought={ing.isBought}
-          flipBoughtState={e => {
-            const newBoughtState = e.target.checked;
-            this.updateDinnerIngredient("isBought", newBoughtState, ing.id);
-          }}
+          flipBoughtState={() => this.props.updateIngredientBoughtState(ing.name, !ing.isBought)}
         />
       );
     });

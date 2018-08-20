@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import ShoppingList from "./ShoppingList";
 import Dinners from "./Dinners";
 import ButtonAppBar from "./components/AppBar";
-import uuid from './utils/uuid'
+import uuid from "./utils/uuid";
 
 const styles = theme => {};
 
@@ -25,7 +25,7 @@ class App extends Component {
     this.updateDinner = this.updateDinner.bind(this);
     this.updateCache = this.updateCache.bind(this);
     this.deleteDinner = this.deleteDinner.bind(this);
-
+    this.updateIngredientBoughtState = this.updateIngredientBoughtState.bind(this)
     console.log(this.state);
   }
 
@@ -115,6 +115,32 @@ class App extends Component {
     this.updateCache();
   }
 
+  // Updates the bought state of all ingredients with the same name
+  updateIngredientBoughtState(n, new_state) {
+    const dinners_with_ing = this.state.dinners.filter(dinner => {
+      let found = false;
+      dinner.ingredients.forEach(element => {
+        if (element.name === n) {
+          found = true;
+        }
+      });
+      return found;
+    });
+
+    const updated_dinners = dinners_with_ing.map(dinner => {
+      dinner.ingredients.forEach(ing => {
+        if (ing.name === n) {
+          ing.isBought = new_state;
+        }
+      });
+      return dinner;
+    });
+
+    updated_dinners.forEach(dinner => {
+      this.updateDinner(dinner);
+    });
+  }
+
   render() {
     const DinnersWithState = () => {
       return (
@@ -125,14 +151,20 @@ class App extends Component {
           deleteDinner={this.deleteDinner}
           updateDinner={this.updateDinner}
           editing={this.state.editing}
+          updateIngredientBoughtState={this.updateIngredientBoughtState}
         />
       );
     };
 
     const ShoppingListWithState = () => {
       return (
-        <ShoppingList dinnners={this.state.dinners} />
-      )}
+        <ShoppingList
+          dinners={this.state.dinners}
+          updateDinner={this.updateDinner}
+          updateIngredientBoughtState={this.updateIngredientBoughtState}
+        />
+      );
+    };
 
     return (
       <div>

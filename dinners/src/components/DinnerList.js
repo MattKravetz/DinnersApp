@@ -49,13 +49,14 @@ class DinnerList extends Component {
               editDinner={this.props.editDinner}
               deleteDinner={this.props.deleteDinner}
               updateDinner={this.props.updateDinner}
-              expanded={this.state.expanded}
+              expanded={this.state.expanded === dinner.id}
             />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <EditDinner
               dinner={dinner}
               updateDinner={this.props.updateDinner}
+              updateIngredientBoughtState={this.props.updateIngredientBoughtState}
             />
           </ExpansionPanelDetails>
         </ExpansionPanel>

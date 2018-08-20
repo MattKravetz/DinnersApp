@@ -67,6 +67,9 @@ class Dinners extends Component {
             disabled={this.props.expanded}
             onClick={e => {
               e.stopPropagation();
+              if (this.props.dinner.name === "" && this.state.editing_dinner_name) {
+                return
+              }
               this.setEditingState();
             }}
           >
@@ -79,7 +82,6 @@ class Dinners extends Component {
               e.stopPropagation();
               this.props.deleteDinner(this.props.dinner.id);
             }}
-            disabled={this.props.dinner.name === ""}
           >
             <DeleteIcon />
           </IconButton>

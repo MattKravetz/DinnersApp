@@ -4,12 +4,10 @@ import { Grid, Typography } from "@material-ui/core";
 import Ingredient from "./components/Ingredient";
 
 export default function ShoppingList(props) {
-  const cachedState = JSON.parse(localStorage.getItem("state"));
-  console.log(cachedState.dinners);
 
   const ingredients = [].concat.apply(
     [],
-    cachedState.dinners.map(dinner => {
+    props.dinners.map(dinner => {
       return dinner.ingredients.filter(i => i.name !== "");
     })
   );

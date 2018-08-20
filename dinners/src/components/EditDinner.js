@@ -91,16 +91,16 @@ class EditDinner extends React.Component {
       <div className={classes.root}>
         <Grid container spacing={16}>
           <Grid item xs={3}>
-            <Typography variant="subheading">Ingredient</Typography>
+            <Typography variant="title">Ingredient</Typography>
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="subheading">Quantity</Typography>
+            <Typography variant="title">Quantity</Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography variant="subheading">Bought</Typography>
+            <Typography variant="title">Bought</Typography>
           </Grid>
           <Grid item xs={1}>
-            <Typography variant="subheading">Delete</Typography>
+            <Typography variant="title">Delete</Typography>
           </Grid>
         </Grid>
         {ingredients}

@@ -17,7 +17,6 @@ const styles = {
 };
 
 class Ingredient extends Component {
-
   render() {
     const { classes } = this.props;
     return (
@@ -47,15 +46,15 @@ class Ingredient extends Component {
             onChange={this.props.flipBoughtState}
             classes={{
               root: classes.root,
-              checked: classes.checked,
+              checked: classes.checked
             }}
           />
         </Grid>
         <Grid item xs={1}>
-          <IconButton 
+          <IconButton
             onClick={e => this.props.deleteIngredient(this.props.id)}
             disabled={this.props.isBought}
-            >
+          >
             <DeleteIcon />
           </IconButton>
         </Grid>

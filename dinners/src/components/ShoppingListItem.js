@@ -26,14 +26,11 @@ function ShoppingListItem(props) {
         <Grid item xs={1}>
           <Checkbox
             checked={props.isBought}
-            onChange={props.flipBoughtState}
             classes={{
               root: classes.root,
               checked: classes.checked
             }}
-            onChange={e =>
-                props.updateBoughtState(props.name)
-              }
+            onChange={e => props.updateIngredientBoughtState(props.name)}
           />
         </Grid>
       </Grid>

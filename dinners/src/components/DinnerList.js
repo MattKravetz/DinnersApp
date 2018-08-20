@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Dinner from "./Dinners";
+import Dinner from "./Dinner";
 import EditDinner from "./EditDinner";
 
 import {

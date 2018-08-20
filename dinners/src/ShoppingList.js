@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 
-import Ingredient from "./components/Ingredient";
 import ShoppingListItem from "./components/ShoppingListItem";
 
 export default function ShoppingList(props) {
@@ -12,14 +11,16 @@ export default function ShoppingList(props) {
     })
   );
 
+  // TODO combine ingredients with the same name
+  
   const shopping_items = ingredients.map(ing => {
     return (
       <ShoppingListItem
         name={ing.name}
         quantity={ing.quantity}
         isBought={ing.isBought}
-        updateBoughtState={ing_name =>
-          props.updateBoughtState(ing_name, !ing.isBought)
+        updateIngredientBoughtState={ing_name =>
+          props.updateIngredientBoughtState(ing_name, !ing.isBought)
         }
         id={ing.id}
         key={ing.id}
@@ -31,16 +32,13 @@ export default function ShoppingList(props) {
     <div>
       <Grid container spacing={16}>
         <Grid item xs={3}>
-          <Typography variant="subheading">Ingredient</Typography>
+          <Typography variant="title">Ingredient</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography variant="subheading">Quantity</Typography>
+          <Typography variant="title">Quantity</Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography variant="subheading">Bought</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="subheading">Delete</Typography>
+          <Typography variant="title">Bought</Typography>
         </Grid>
       </Grid>
       {shopping_items}

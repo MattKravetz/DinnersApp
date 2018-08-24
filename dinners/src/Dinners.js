@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./App.css";
 import DinnerList from "./components/DinnerList";
@@ -6,11 +6,17 @@ import DinnerList from "./components/DinnerList";
 import { Button, withStyles } from "@material-ui/core";
 import { Route } from "react-router-dom";
 
-const styles = theme => {};
+
+const styles = {
+  root: {
+    width: "50"
+  }
+};
 
 function Dinners(props) {
+  const {classes} = props;
   return (
-    <div>
+    <div className={classes.root}>
       <Route path="/dinners" />
       <DinnerList
         dinners={props.dinners}

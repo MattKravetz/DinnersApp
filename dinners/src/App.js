@@ -16,7 +16,27 @@ class App extends Component {
     // get cached state, if it exists
     const cachedState = JSON.parse(localStorage.getItem("state"));
     this.state = cachedState || {
-      dinners: [],
+      dinners: [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ].map(day => {
+        return {
+          id: uuid(),
+          name: day,
+          ingredients: [
+            {
+              id: uuid(),
+              name: "",
+              quantity: ""
+            }
+          ]
+        };
+      }),
       editing: null
     };
 
@@ -25,7 +45,9 @@ class App extends Component {
     this.updateDinner = this.updateDinner.bind(this);
     this.updateCache = this.updateCache.bind(this);
     this.deleteDinner = this.deleteDinner.bind(this);
-    this.updateIngredientBoughtState = this.updateIngredientBoughtState.bind(this)
+    this.updateIngredientBoughtState = this.updateIngredientBoughtState.bind(
+      this
+    );
     console.log(this.state);
   }
 

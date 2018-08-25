@@ -9,7 +9,7 @@ const mapStateToProps = state => {
       state.user.dinners.map(d => d.id).includes(d.id)
     ),
     favorites: state.dinners.filter(d =>
-      state.user.dinners.map(e => Object.values(e)).includes(d.id)
+      state.user.favorites.map(d => d.id).includes(d.id)
     )
   };
   return props;
@@ -28,13 +28,24 @@ const User = props => {
     </ListItem>
   );
   const favorites = props.favorites.map(d => {
-    return <Typography variant="body2">{d.name}</Typography>;
-  }) || <Typography variant="body2">No favorites</Typography>;
-
+    return (
+      <ListItem key={"favorite-" + d.id}>
+        <Typography variant="body2">{d.name}</Typography>
+      </ListItem>
+    );
+  }) || (
+    <ListItem key={"no-favorites"}>
+      <Typography variant="body2">No favorites</Typography>
+    </ListItem>
+  );
+  console.log(favorites)
   return (
     <div>
       <Typography variant="display2">Hello {props.name}!</Typography>
+      <Typography variant="headline">Dinners</Typography>
       <List>{dinners}</List>
+      <Typography variant="headline">Favorites</Typography>
+      <List>{favorites}</List>
     </div>
   );
 };

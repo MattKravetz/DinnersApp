@@ -15,7 +15,12 @@ export const testState = {
         dates: ["2018-08-22"]
       }
     ],
-    favorites: []
+    favorites: [
+      {
+        id: 1,
+        favorited_date: "2018-08-21"
+      }
+    ]
   },
 
   dinners: [

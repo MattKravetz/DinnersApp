@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
+import User from "./User"
 import ShoppingList from "./ShoppingList";
 import Dinners from "./Dinners";
 import ButtonAppBar from "./components/AppBar";
@@ -197,6 +198,7 @@ class App extends Component {
           <Route exact path="/" render={DinnersWithState} />
           <Route exact path="/dinners" render={DinnersWithState} />
           <Route exact path="/shoppinglist" render={ShoppingListWithState} />
+          <Route exact path="/user" render={User}/>
         </Switch>
       </div>
     );

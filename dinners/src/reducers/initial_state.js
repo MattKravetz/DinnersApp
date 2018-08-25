@@ -1,7 +1,7 @@
 const initialState = {
     user: {
       id: 0,
-      name: "",
+      name: "Default Name",
       dinners: [],
       favorites: []
     },

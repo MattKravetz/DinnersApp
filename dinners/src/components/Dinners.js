@@ -1,7 +1,7 @@
 import React from "react";
 
-import "./App.css";
-import DinnerList from "./components/DinnerList";
+//import "./App.css";
+import DinnerList from "./DinnerList";
 
 import { Button, withStyles } from "@material-ui/core";
 import { Route } from "react-router-dom";

@@ -5,8 +5,8 @@ import { Switch, Route } from "react-router-dom";
 import User from "./User"
 import ShoppingList from "./ShoppingList";
 import Dinners from "./Dinners";
-import ButtonAppBar from "./components/AppBar";
-import uuid from "./utils/uuid";
+import ButtonAppBar from "./AppBar";
+import uuid from "../utils/uuid";
 
 const styles = theme => {};
 

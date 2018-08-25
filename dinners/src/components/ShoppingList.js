@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 
-import ShoppingListItem from "./components/ShoppingListItem";
+import ShoppingListItem from "./ShoppingListItem";
 
 const styles = {
   root: {

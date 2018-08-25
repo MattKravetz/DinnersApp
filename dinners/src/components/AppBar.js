@@ -2,7 +2,7 @@ import React from "react";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { Button, withStyles } from "@material-ui/core";
+import { Button, withStyles, Typography } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
@@ -10,31 +10,28 @@ const DinnersLink = props => <Link to="/dinners" {...props} />;
 const ShoppingListLink = props => <Link to="/shoppinglist" {...props} />;
 const UserLink = props => <Link to="/user" {...props} />;
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  rightButtons: {
+    marginLeft: 'auto'
+  }
+});
+
 function ButtonAppBar(props) {
   const { classes } = props;
   return (
-    <div>
+    <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Button
-            style={{ float: "left" }}
-            component={DinnersLink}
-            color="inherit"
-          >
+          <Button component={DinnersLink} color="inherit">
             Dinners
           </Button>
-          <Button
-            style={{ float: "left" }}
-            component={ShoppingListLink}
-            color="inherit"
-          >
+          <Button  component={ShoppingListLink} color="inherit">
             Shopping List
           </Button>
-          <Button
-            style={{ float: "right" }}
-            component={UserLink}
-            color="inherit"
-          >
+          <Button className={classes.rightButtons} component={UserLink} color="inherit">
             Edit User
           </Button>
         </Toolbar>
@@ -43,4 +40,4 @@ function ButtonAppBar(props) {
   );
 }
 
-export default withStyles(() => {})(ButtonAppBar);
+export default withStyles(styles)(ButtonAppBar);

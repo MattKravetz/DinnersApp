@@ -49,6 +49,8 @@
     - name
     - [bought dates]
     - quantity // total quantity
+    - unit name
+
 
 ## Quantity Model
 
@@ -74,5 +76,4 @@ const example_quantity = {
     - updateBoughtState -> bool
     - updateQuantity -> {quantity}
 
-
-
+## State Shape

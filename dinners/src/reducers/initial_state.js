@@ -1,4 +1,4 @@
-export const initial = {
+const initialState = {
     user: {
       id: 0,
       name: "",
@@ -13,3 +13,4 @@ export const initial = {
     ]
   };
   
+  export default initialState;

@@ -1,4 +1,4 @@
-export const test_state = {
+export const testState = {
   user: {
     id: 0,
     name: "Matt",

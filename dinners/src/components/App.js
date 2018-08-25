@@ -198,7 +198,7 @@ class App extends Component {
           <Route exact path="/" render={DinnersWithState} />
           <Route exact path="/dinners" render={DinnersWithState} />
           <Route exact path="/shoppinglist" render={ShoppingListWithState} />
-          <Route exact path="/user" render={User}/>
+          <Route exact path="/user" component={User}/>
         </Switch>
       </div>
     );

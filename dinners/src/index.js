@@ -8,9 +8,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import dinnersApp from "./reducers/dinners_app";
+// import initialState from './reducers/initial_state'
+import {testState as initialState} from './test/initial_state'
 
 const store = createStore(
   dinnersApp,
+  initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

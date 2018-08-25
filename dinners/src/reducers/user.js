@@ -1,7 +1,6 @@
-import initialState from "./initial_state";
 import { UPDATE_NAME, ADD_DINNER, REMOVE_DINNER, ADD_FAVORITE } from "../actions/user";
 
-export default function userReducer(state = initialState, action) {
+export default function userReducer(state = [], action) {
   switch (action.type) {
     case UPDATE_NAME:
       return {

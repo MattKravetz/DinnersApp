@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { List, ListItem, Typography } from "@material-ui/core";
 
 const mapStateToProps = state => {
@@ -34,4 +35,4 @@ const User = props => {
   );
 };
 
-export default User;
+export default connect(mapStateToProps)(User);

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
-import User from "./User"
-import ShoppingList from "./ShoppingList";
-import Dinners from "./Dinners";
+import User from "./User/User"
+import ShoppingList from "./ShoppingList/ShoppingList";
+import Dinners from "./Dinners/Dinners";
 import ButtonAppBar from "./AppBar";
 import uuid from "../utils/uuid";
 

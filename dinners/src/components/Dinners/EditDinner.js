@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 
 import Ingredient from "./Ingredient";
-import uuid from "../utils/uuid";
+import uuid from "../../utils/uuid";
 
 const styles = theme => ({
   root: {

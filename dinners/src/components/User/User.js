@@ -5,8 +5,12 @@ import { List, ListItem, Typography } from "@material-ui/core";
 const mapStateToProps = state => {
   const props = {
     ...state.user,
-    dinners: state.dinners.filter(d => state.user.dinners.includes(d.id)),
-    favorites: state.dinners.filter(d => state.user.favorites.includes(d.id))
+    dinners: state.dinners.filter(d =>
+      state.user.dinners.map(d => d.id).includes(d.id)
+    ),
+    favorites: state.dinners.filter(d =>
+      state.user.dinners.map(e => Object.values(e)).includes(d.id)
+    )
   };
   return props;
 };

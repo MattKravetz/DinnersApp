@@ -2,7 +2,19 @@ export const testState = {
   user: {
     id: 0,
     name: "Matt",
-    dinners: [{ "2018-08-20": 0 }, { "2018-08-21": 1 }, { "2018-08-22": 2 }],
+    dinners: [
+      {
+        id: 0,
+        dates: ["2018-08-20"]
+      },
+      { id: 1,
+        dates: ["2018-08-21"]
+      },
+      {
+        id: 2,
+        dates: ["2018-08-22"]
+      }
+    ],
     favorites: []
   },
 

@@ -1,7 +1,7 @@
 import {
   ADD_DINNER,
   UPDATE_DINNER_NAME,
-  ADD_INGREDIENT,
+  ADD_INGREDIENT_TO_DINNER,
   REMOVE_INGREDIENT,
   UPDATE_INGREDIENT_QUANTITY,
   TOGGLE_COMPLETED
@@ -31,10 +31,54 @@ export default function dinnersReducer(state = [], action) {
           ingredients: []
         }
       ];
-    case ADD_INGREDIENT:
-      return state;
+    case ADD_INGREDIENT_TO_DINNER:
+      console.log("here's ya state", state);
+      console.log(
+        "adding to dinner",
+        state.map(d => {
+          if (d.id === action.id) {
+            return {
+              ...d,
+              ingredients: [
+                ...d.ingredients,
+                {
+                  id: action.ingredient_id
+                }
+              ]
+            };
+          } else {
+            return d;
+          }
+        })
+      );
+      return state.map(d => {
+        if (d.id === action.id) {
+          return {
+            ...d,
+            ingredients: [
+              ...d.ingredients,
+              {
+                id: action.ingredient_id
+              }
+            ]
+          };
+        } else {
+          return d;
+        }
+      });
     case REMOVE_INGREDIENT:
-      return state;
+      return state.map(d => {
+        if (d.id === action.id) {
+          return {
+            ...d,
+            ingredients: d.ingredients.filter(
+              ing => ing.id !== action.ingredient_id
+            )
+          };
+        } else {
+          return d;
+        }
+      });
     case UPDATE_INGREDIENT_QUANTITY:
       return state.map(d => {
         if (d.id === action.id) {

@@ -1,7 +1,9 @@
 import {
   UPDATE_INGREDIENT_NAME,
-  TOGGLE_BOUGHT
+  TOGGLE_BOUGHT,
+  ADD_INGREDIENT
 } from "../actions/ingredient";
+
 
 export default function ingredientsReducer(state = [], action) {
   switch (action.type) {
@@ -19,6 +21,14 @@ export default function ingredientsReducer(state = [], action) {
 
     case TOGGLE_BOUGHT:
       return state;
+
+    case ADD_INGREDIENT:
+      return [
+        ...state,
+        {
+          id: action.uuid
+        }
+      ];
 
     default:
       return state;

@@ -6,8 +6,14 @@ import DinnerList from "./DinnerList";
 import { Button, withStyles } from "@material-ui/core";
 import { Route } from "react-router-dom";
 
-import { updateDinnerName, addDinner, updateIngredientQuantity } from "../../actions/dinner";
-import { updateIngredientName } from "../../actions/ingredient"
+import {
+  updateDinnerName,
+  addDinner,
+  updateIngredientQuantity,
+  addIngredientToDinner,
+  removeIngredient
+} from "../../actions/dinner";
+import { updateIngredientName, addIngredient } from "../../actions/ingredient";
 
 const styles = {
   root: {
@@ -25,9 +31,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateDinnerName: (id, text) => dispatch(updateDinnerName(id, text)),
-    addDinner: (text) => dispatch(addDinner(text)),
-    updateIngredientName: (id, text) => dispatch(updateIngredientName(id, text)),
-    updateIngredientQuantity: (id, ingredient_id, quantity) => dispatch(updateIngredientQuantity(id, ingredient_id, quantity))
+    addDinner: text => dispatch(addDinner(text)),
+    updateIngredientName: (id, text) =>
+      dispatch(updateIngredientName(id, text)),
+    updateIngredientQuantity: (id, ingredient_id, quantity) =>
+      dispatch(updateIngredientQuantity(id, ingredient_id, quantity)),
+    addIngredient: uuid => dispatch(addIngredient(uuid)),
+    addIngredientToDinner: (id, ingredient_id) =>
+      dispatch(addIngredientToDinner(id, ingredient_id)),
+    removeIngredient: (id, ingredient_id) =>
+      dispatch(removeIngredient(id, ingredient_id))
   };
 };
 
@@ -45,6 +58,9 @@ function Dinners(props) {
         updateIngredientName={props.updateIngredientName}
         updateIngredientQuantity={props.updateIngredientQuantity}
         updateIngredientBoughtState={props.updateIngredientBoughtState}
+        addIngredientToDinner={props.addIngredientToDinner}
+        addIngredient={props.addIngredient}
+        removeIngredient={props.removeIngredient}
       />
       <Button
         variant="contained"

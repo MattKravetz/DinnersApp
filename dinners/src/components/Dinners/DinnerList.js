@@ -46,7 +46,6 @@ class DinnerList extends Component {
             <Dinner
               dinner={dinner}
               updateDinnerName={this.props.updateDinnerName}
-              editDinner={this.props.editDinner}
               deleteDinner={this.props.deleteDinner}
               updateDinner={this.props.updateDinner}
               expanded={this.state.expanded === dinner.id}

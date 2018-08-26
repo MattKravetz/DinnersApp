@@ -7,6 +7,9 @@ import uuid from "../../utils/uuid";
 const styles = theme => ({
   root: {
     flexGrow: 1
+  },
+  text: {
+    fontSize: "1.5vw"
   }
 });
 
@@ -15,25 +18,23 @@ function EditDinner(props) {
     const last_ingredient = props.dinner.ingredients.slice(-1)[0];
     const enterKeycode = 13;
     if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
-      const new_ing_id = uuid()
+      const new_ing_id = uuid();
       props.addIngredient(new_ing_id);
-      props.addIngredientToDinner(props.dinner.id, new_ing_id)
+      props.addIngredientToDinner(props.dinner.id, new_ing_id);
     }
   };
 
   const dinner = props.dinner;
   const { classes } = props;
   let ingredients = dinner.ingredients.map(dinner_ing => {
-    const ing = props.ingredients.filter(i => i.id === dinner_ing.id)[0];    
+    const ing = props.ingredients.filter(i => i.id === dinner_ing.id)[0];
     return (
       <Ingredient
         name={ing.name}
         quantity={dinner_ing.quantity}
         id={ing.id}
         key={"ingredient-" + ing.id}
-        updateName={e =>
-          props.updateIngredientName(ing.id, e.target.value)
-        }
+        updateName={e => props.updateIngredientName(ing.id, e.target.value)}
         updateQuantity={e =>
           props.updateIngredientQuantity(dinner.id, ing.id, e.target.value)
         }
@@ -49,16 +50,24 @@ function EditDinner(props) {
     <div className={classes.root}>
       <Grid container spacing={16}>
         <Grid item xs={3}>
-          <Typography variant="title">Ingredient</Typography>
+          <Typography variant="title" className={classes.text}>
+            Ingredient
+          </Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography variant="title">Quantity</Typography>
+          <Typography variant="title" className={classes.text}>
+            Quantity
+          </Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography variant="title">Bought</Typography>
+          <Typography variant="title" className={classes.text}>
+            Bought
+          </Typography>
         </Grid>
         <Grid item xs={1}>
-          <Typography variant="title">Delete</Typography>
+          <Typography variant="title" className={classes.text}>
+            Delete
+          </Typography>
         </Grid>
       </Grid>
       {ingredients}

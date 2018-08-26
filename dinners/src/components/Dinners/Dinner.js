@@ -10,8 +10,14 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
 const styles = theme => ({
-  root: {
+  display1: {
     ...theme.typography.display1
+  },
+  root: {
+    flexGrow: 1
+  },
+  rightButtons: {
+    marginLeft: "auto"
   }
 });
 
@@ -21,7 +27,7 @@ const Dinners = props => {
   const header = props.expanded ? (
     <Input
       autoFocus
-      className={classes.root}
+      className={classes.display1}
       type="text"
       value={props.dinner.name}
       onChange={e => props.updateDinnerName(props.dinner.id, e.target.value)}
@@ -38,16 +44,14 @@ const Dinners = props => {
   );
 
   return (
-    <Grid container spacing={24}>
+    <Grid container spacing={24} justify="space-between">
       <Grid item xs={10}>
         {header}
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         <IconButton>
           <EditIcon />
         </IconButton>
-      </Grid>
-      <Grid item xs={1}>
         <IconButton
           onClick={e => {
             e.stopPropagation();

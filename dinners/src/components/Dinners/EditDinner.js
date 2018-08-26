@@ -11,20 +11,7 @@ const styles = theme => ({
 });
 
 class EditDinner extends React.Component {
-  updateDinnerIngredient(property, val, target_id) {
-    let new_dinner = { ...this.props.dinner };
-    new_dinner.ingredients = new_dinner.ingredients.map(ing => {
-      if (ing.id === target_id) {
-        return {
-          ...ing,
-          [property]: val
-        };
-      }
-      return ing;
-    });
 
-    this.props.updateDinner(new_dinner);
-  }
 
   handleKeyPress(e) {
     // On enter, consider this ingredient submitted.  Add a new blank empty to the list
@@ -66,20 +53,22 @@ class EditDinner extends React.Component {
   render() {
     const dinner = this.props.dinner;
     const { classes } = this.props;
-    let ingredients = dinner.ingredients.map(ing => {
+    let ingredients = dinner.ingredients.map(dinner_ing => {
+      const ing = this.props.ingredients.filter(i => i.id === dinner_ing.id)[0];
       return (
         <Ingredient
           name={ing.name}
-          quantity={ing.quantity}
+          quantity={dinner_ing.quantity}
           id={ing.id}
-          key={ing.id}
-          handleChange={e =>
-            this.updateDinnerIngredient(e.target.name, e.target.value, ing.id)
-          }
+          key={"ingredient-"+ing.id}
+          updateName={e => this.props.updateIngredientName(ing.id, e.target.value)}
+          updateQuantity={e => this.props.updateIngredientQuantity(dinner.id, ing.id, e.target.value)}
           onKeyPress={e => this.handleKeyPress(e)}
           deleteIngredient={e => this.deleteIngredient(e)}
           isBought={ing.isBought}
-          flipBoughtState={() => this.props.updateIngredientBoughtState(ing.name, !ing.isBought)}
+          flipBoughtState={() =>
+            this.props.updateIngredientBoughtState(ing.name, !ing.isBought)
+          }
         />
       );
     });

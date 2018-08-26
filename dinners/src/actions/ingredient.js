@@ -1,9 +1,9 @@
-export const UPDATE_NAME = "UPDATE_NAME"
+export const UPDATE_INGREDIENT_NAME = "UPDATE_INGREDIENT_NAME"
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY"
 export const TOGGLE_BOUGHT = "TOGGLE_BOUGHT"
 
-export function updateName(text){
-    return {type: UPDATE_NAME, text}
+export function updateIngredientName(id, text){
+    return {type: UPDATE_INGREDIENT_NAME, id, text}
 }
 
 export function udpateQuantity(quantity){

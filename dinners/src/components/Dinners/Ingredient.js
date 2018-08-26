@@ -27,7 +27,7 @@ class Ingredient extends Component {
             type="text"
             name="name"
             value={this.props.name}
-            onChange={this.props.handleChange}
+            onChange={this.props.updateName}
             onKeyDown={this.props.onKeyPress}
           />
         </Grid>
@@ -36,7 +36,7 @@ class Ingredient extends Component {
             type="text"
             name="quantity"
             value={this.props.quantity}
-            onChange={this.props.handleChange}
+            onChange={this.props.updateQuantity}
             onKeyDown={this.props.onKeyPress}
           />
         </Grid>

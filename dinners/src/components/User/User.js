@@ -1,67 +1,49 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  List,
-  ListItem,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import { updateName } from "../../actions/user";
+import { Typography } from "@material-ui/core";
+import { addFavorite, removeFavorite } from "../../actions/user";
 
-
-import FavoriteList from './FavoriteList'
-
+import PastDinnerList from "./PastDinnerList";
 
 const mapStateToProps = state => {
+  //Reshape dinners
+  let dinnersWithDates = [];
+  state.user.dinners.forEach(user_d => {
+    const full_dinner = state.dinners.filter(d => d.id === user_d.id)[0];
+    user_d.dates.forEach(date => {
+      dinnersWithDates = dinnersWithDates.concat({
+        id: full_dinner.id,
+        name: full_dinner.name,
+        favorited: state.user.favorites.map(d => d.id).includes(full_dinner.id),
+        date: date
+      });
+    });
+  });
+
   const props = {
     ...state.user,
-    dinners: state.dinners.filter(d =>
-      state.user.dinners.map(d => d.id).includes(d.id)
-    ),
-    favorites: state.dinners.filter(d =>
-      state.user.favorites.map(d => d.id).includes(d.id)
-    )
+    dinners: dinnersWithDates
   };
   return props;
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmitName: name => dispatch(updateName(name))
+    toggleFavorite: (dinner, date) =>
+      dinner.favorited
+        ? dispatch(removeFavorite(dinner.id))
+        : dispatch(addFavorite(dinner.id, date))
   };
 };
 
 const User = props => {
-
-  const dinners = props.dinners.map(d => {
-    return (
-      <ListItem key={"dinner-" + d.id}>
-        <Typography variant="body2">{d.name}</Typography>
-      </ListItem>
-    );
-  }) || (
-    <ListItem key={"no-dinner"}>
-      <Typography variant="body2">No dinners</Typography>
-    </ListItem>
-  );
-
-  const favorites = props.favorites.map(d => {
-    return (
-      <ListItem key={"favorite-" + d.id}>
-        <Typography variant="body2">{d.name}</Typography>
-      </ListItem>
-    );
-  }) || (
-    <ListItem key={"no-favorites"}>
-      <Typography variant="body2">No favorites</Typography>
-    </ListItem>
-  );
-
   return (
     <div>
-      <Typography variant="display2">{`Hello ${props.name}!`}</Typography>
-      <Typography variant="headline">Favorites</Typography>
-      <FavoriteList favorites={props.favorites}/>
+      <Typography variant="display2">Previous Dinners</Typography>
+      <PastDinnerList
+        dinners={props.dinners}
+        toggleFavorite={props.toggleFavorite}
+      />
     </div>
   );
 };

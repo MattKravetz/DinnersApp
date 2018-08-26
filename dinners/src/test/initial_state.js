@@ -26,7 +26,6 @@ export const testState = {
   dinners: [
     {
       id: 0,
-      favorited: true,
       name: "Ham Sandwich",
       ingredients: [
         {
@@ -39,7 +38,6 @@ export const testState = {
     },
     {
       id: 1,
-      favorited: false,
       name: "Pot Roast",
       ingredients: [
         {
@@ -54,7 +52,6 @@ export const testState = {
     },
     {
       id: 2,
-      favorited: true,
       name: "Steak",
       ingredients: [
         {

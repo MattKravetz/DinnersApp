@@ -16,8 +16,8 @@ export function removeDinner(dinner){
     return {type: REMOVE_DINNER, dinner}
 }
 
-export function addFavorite(dinner){
-    return {type: ADD_FAVORITE, dinner}
+export function addFavorite(dinner, date){
+    return {type: ADD_FAVORITE, dinner, date}
 }
 
 export function removeFavorite(dinner){

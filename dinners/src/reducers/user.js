@@ -1,4 +1,4 @@
-import { UPDATE_NAME, ADD_DINNER, REMOVE_DINNER, ADD_FAVORITE } from "../actions/user";
+import { UPDATE_NAME, ADD_DINNER, REMOVE_DINNER, ADD_FAVORITE, REMOVE_FAVORITE } from "../actions/user";
 
 export default function userReducer(state = [], action) {
   switch (action.type) {
@@ -17,13 +17,18 @@ export default function userReducer(state = [], action) {
     case REMOVE_DINNER:
       return {
           ...state.user,
-          dinners: state.dinners.map(d => d !== action.dinner)
+          dinners: state.dinners.filter(d => d !== action.dinner)
         }
     case ADD_FAVORITE:
       return {
               ...state,
               favorites: state.favorites.concat(action.dinner)
           }
+    case REMOVE_FAVORITE:
+          return {
+                  ...state,
+                  favorites: state.favorites.filter(d => d !== action.dinner)
+              }
     default:
       return state;
   }

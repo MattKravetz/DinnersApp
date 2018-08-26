@@ -1,6 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { List, ListItem, Typography } from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  Typography,
+  withStyles
+} from "@material-ui/core";
+import { updateName } from "../../actions/user";
+
+
+import FavoriteList from './FavoriteList'
+
 
 const mapStateToProps = state => {
   const props = {
@@ -15,7 +25,14 @@ const mapStateToProps = state => {
   return props;
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitName: name => dispatch(updateName(name))
+  };
+};
+
 const User = props => {
+
   const dinners = props.dinners.map(d => {
     return (
       <ListItem key={"dinner-" + d.id}>
@@ -27,6 +44,7 @@ const User = props => {
       <Typography variant="body2">No dinners</Typography>
     </ListItem>
   );
+
   const favorites = props.favorites.map(d => {
     return (
       <ListItem key={"favorite-" + d.id}>
@@ -38,16 +56,17 @@ const User = props => {
       <Typography variant="body2">No favorites</Typography>
     </ListItem>
   );
-  console.log(favorites)
+
   return (
     <div>
-      <Typography variant="display2">Hello {props.name}!</Typography>
-      <Typography variant="headline">Dinners</Typography>
-      <List>{dinners}</List>
+      <Typography variant="display2">{`Hello ${props.name}!`}</Typography>
       <Typography variant="headline">Favorites</Typography>
-      <List>{favorites}</List>
+      <FavoriteList favorites={props.favorites}/>
     </div>
   );
 };
 
-export default connect(mapStateToProps)(User);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(User);

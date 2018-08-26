@@ -45,6 +45,7 @@ class DinnerList extends Component {
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Dinner
               dinner={dinner}
+              updateDinnerName={this.props.updateDinnerName}
               addDinner={this.props.addDinner}
               editDinner={this.props.editDinner}
               deleteDinner={this.props.deleteDinner}

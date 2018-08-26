@@ -21,13 +21,9 @@ class Dinners extends Component {
     this.state = { editing_dinner_name:  this.props.dinner.name === "" ? true : false};
   }
 
+  // this needs to trigger the UPDATE_NAME action
   handleChange(val) {
-    //this.setState({ value: event.target.value });
-    const new_dinner = {
-      ...this.props.dinner,
-      name: val
-    };
-    this.props.updateDinner(new_dinner);
+    this.props.updateDinnerName(this.props.dinner.id, val);
   }
 
   setEditingState(state) {

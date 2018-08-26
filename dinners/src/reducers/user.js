@@ -5,7 +5,6 @@ import {
   ADD_FAVORITE,
   REMOVE_FAVORITE
 } from "../actions/user";
-import { compose } from "redux";
 
 export default function userReducer(state = {}, action) {
   switch (action.type) {
@@ -28,7 +27,6 @@ export default function userReducer(state = {}, action) {
         dinners: state.dinners.filter(d => d !== action.dinner)
       };
     case ADD_FAVORITE:
-      console.log("adding");
       if (state.favorites.map(e => e.id).includes(action.dinner)) {
         return state;
       }

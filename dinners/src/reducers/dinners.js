@@ -26,7 +26,7 @@ export default function dinnersReducer(state = [], action) {
       return [
         ...state,
         {
-          id: uuid(),
+          id: action.uuid,
           name: action.name,
           ingredients: []
         }

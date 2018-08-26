@@ -41,8 +41,8 @@ function Ingredient(props) {
         </Grid>
         <Grid item xs={1}>
           <Checkbox
-            checked={props.isBought}
-            onChange={props.flipBoughtState}
+            checked={props.bought}
+            onChange={props.toggleBought}
             classes={{
               root: classes.root,
               checked: classes.checked
@@ -52,7 +52,7 @@ function Ingredient(props) {
         <Grid item xs={1}>
           <IconButton
             onClick={props.removeIngredient}
-            disabled={props.isBought}
+            disabled={props.bought}
           >
             <DeleteIcon />
           </IconButton>

@@ -5,8 +5,8 @@ export const UPDATE_INGREDIENT_QUANTITY = "UPDATE_INGREDIENT_QUANTITY"
 export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED"
 export const ADD_INGREDIENT_TO_DINNER = "ADD_INGREDIENT_TO_DINNER"
 
-export function addDinner(name="New Dinner"){
-    return {type: ADD_DINNER, name}
+export function addDinner(uuid, name="New Dinner"){
+    return {type: ADD_DINNER, uuid, name}
 }
 
 export function updateDinnerName(id, text){

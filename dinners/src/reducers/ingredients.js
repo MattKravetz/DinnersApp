@@ -4,7 +4,6 @@ import {
   ADD_INGREDIENT
 } from "../actions/ingredient";
 
-
 export default function ingredientsReducer(state = [], action) {
   switch (action.type) {
     case UPDATE_INGREDIENT_NAME:
@@ -20,7 +19,16 @@ export default function ingredientsReducer(state = [], action) {
       });
 
     case TOGGLE_BOUGHT:
-      return state;
+      return state.map(ing => {
+        if (ing.id === action.id) {
+          return {
+            ...ing,
+            bought: !ing.bought
+          };
+        } else {
+          return ing;
+        }
+      });
 
     case ADD_INGREDIENT:
       return [

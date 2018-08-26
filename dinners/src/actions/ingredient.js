@@ -11,8 +11,8 @@ export function udpateQuantity(quantity){
     return {type: UPDATE_QUANTITY, quantity}
 }
 
-export function toggleBought(new_state){
-    return {type: TOGGLE_BOUGHT, new_state}
+export function toggleBought(id){
+    return {type: TOGGLE_BOUGHT, id}
 }
 
 export function addIngredient(uuid){

@@ -39,10 +39,8 @@ function EditDinner(props) {
         }
         onKeyPress={e => handleKeyPress(e)}
         removeIngredient={e => props.removeIngredient(dinner.id, ing.id)}
-        isBought={ing.isBought}
-        flipBoughtState={() =>
-          props.updateIngredientBoughtState(ing.name, !ing.isBought)
-        }
+        bought={ing.bought}
+        toggleBought={e => props.toggleBought(ing.id)}
       />
     );
   });

@@ -13,7 +13,12 @@ import {
   addIngredientToDinner,
   removeIngredient
 } from "../../actions/dinner";
-import { updateIngredientName, addIngredient } from "../../actions/ingredient";
+import {
+  updateIngredientName,
+  addIngredient,
+  toggleBought
+} from "../../actions/ingredient";
+import uuid from "../../utils/uuid";
 
 const styles = {
   root: {
@@ -40,11 +45,24 @@ const mapDispatchToProps = dispatch => {
     addIngredientToDinner: (id, ingredient_id) =>
       dispatch(addIngredientToDinner(id, ingredient_id)),
     removeIngredient: (id, ingredient_id) =>
-      dispatch(removeIngredient(id, ingredient_id))
+      dispatch(removeIngredient(id, ingredient_id)),
+    toggleBought: (id, ingredient_id) =>
+      dispatch(toggleBought(id, ingredient_id))
   };
 };
 
+
+
+
 function Dinners(props) {
+  const addNewDinner = () => {
+    const dinner_id = uuid()
+    const ingredient_id = uuid()
+    props.addDinner(dinner_id)
+    props.addIngredient(ingredient_id)
+    props.addIngredientToDinner(dinner_id, ingredient_id)
+  }
+
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -53,19 +71,18 @@ function Dinners(props) {
         dinners={props.dinners}
         ingredients={props.ingredients}
         updateDinnerName={props.updateDinnerName}
-        addDinner={props.addDinner}
-        editing={props.editing}
         updateIngredientName={props.updateIngredientName}
         updateIngredientQuantity={props.updateIngredientQuantity}
         updateIngredientBoughtState={props.updateIngredientBoughtState}
         addIngredientToDinner={props.addIngredientToDinner}
         addIngredient={props.addIngredient}
         removeIngredient={props.removeIngredient}
+        toggleBought={props.toggleBought}
       />
       <Button
         variant="contained"
         color="primary"
-        onClick={() => props.addDinner("")}
+        onClick={addNewDinner}
       >
         Add Dinner
       </Button>

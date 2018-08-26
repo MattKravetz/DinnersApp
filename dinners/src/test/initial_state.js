@@ -71,28 +71,33 @@ export const testState = {
       id: 0,
       name: "bread",
       bought_dates: ["2018-08-15"],
-      unit_name: "loaf"
+      bought: true,
+      unit_name: "loaf",      
     },
     {
       id: 1,
       name: "ham",
       bought_dates: ["2018-08-15"],
+      bought: true,
       unit_name: "pound"
     },
     {
       id: 2,
       name: "beef",
       bought_dates: ["2018-08-15"],
+      bought: false,
       unit_name: "pound"
     },
     {
       id: 3,
       name: "onion",
+      bought: false,
       bought_dates: ["2018-08-17"],
     },
     {
       id: 4,
       name: "steak",
+      bought: true,
       bought_dates: ["2018-08-17"],
     }
   ]

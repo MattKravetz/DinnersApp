@@ -26,6 +26,7 @@ const Dinners = props => {
   const { classes } = props;
   const header = props.expanded ? (
     <Input
+      fullWidth
       autoFocus
       className={classes.display1}
       type="text"

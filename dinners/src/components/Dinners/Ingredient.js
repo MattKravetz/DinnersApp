@@ -23,6 +23,7 @@ function Ingredient(props) {
         <Grid item xs={3}>
           <Input
             autoFocus
+            fullWidth
             type="text"
             name="name"
             value={props.name}
@@ -32,6 +33,7 @@ function Ingredient(props) {
         </Grid>
         <Grid item xs={3}>
           <Input
+            fullWidth
             type="text"
             name="quantity"
             value={props.quantity}

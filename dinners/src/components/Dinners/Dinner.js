@@ -56,7 +56,7 @@ const Dinners = props => {
         <IconButton
           onClick={e => {
             e.stopPropagation();
-            props.deleteDinner(props.dinner.id);
+            props.removeDinner(props.dinner.id);
           }}
         >
           <DeleteIcon />

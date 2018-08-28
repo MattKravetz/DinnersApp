@@ -4,7 +4,8 @@ import {
   ADD_INGREDIENT_TO_DINNER,
   REMOVE_INGREDIENT,
   UPDATE_INGREDIENT_QUANTITY,
-  TOGGLE_COMPLETED
+  TOGGLE_COMPLETED,
+  REMOVE_DINNER
 } from "../actions/dinner";
 
 import uuid from "../utils/uuid";
@@ -31,26 +32,10 @@ export default function dinnersReducer(state = [], action) {
           ingredients: []
         }
       ];
+    case REMOVE_DINNER:
+      return state.filter(d => d.id !== action.uuid);
+
     case ADD_INGREDIENT_TO_DINNER:
-      console.log("here's ya state", state);
-      console.log(
-        "adding to dinner",
-        state.map(d => {
-          if (d.id === action.id) {
-            return {
-              ...d,
-              ingredients: [
-                ...d.ingredients,
-                {
-                  id: action.ingredient_id
-                }
-              ]
-            };
-          } else {
-            return d;
-          }
-        })
-      );
       return state.map(d => {
         if (d.id === action.id) {
           return {

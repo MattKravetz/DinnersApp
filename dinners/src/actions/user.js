@@ -1,6 +1,7 @@
 export const UPDATE_NAME = "UPDATE_NAME"
 export const ADD_DINNER = "ADD_DINNER"
-export const REMOVE_DINNER = "REMOVE_DINNER"
+export const REMOVE_DINNER_FROM_USER = "REMOVE_DINNER_FROM_USER"
+export const ADD_DINNER_TO_USER = "ADD_DINNER_TO_USER"
 export const ADD_FAVORITE = "ADD_FAVORITE"
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE"
 
@@ -8,12 +9,12 @@ export function updateName(text) {
     return {type: UPDATE_NAME, text}
 }
 
-export function addDinner(dinner){
-    return {type: ADD_DINNER, dinner}
+export function addDinnerToUser(dinner){
+    return {type: ADD_DINNER_TO_USER, dinner}
 }
 
-export function removeDinner(dinner){
-    return {type: REMOVE_DINNER, dinner}
+export function removeDinnerFromUser(dinner){
+    return {type: REMOVE_DINNER_FROM_USER, dinner}
 }
 
 export function addFavorite(dinner, date){

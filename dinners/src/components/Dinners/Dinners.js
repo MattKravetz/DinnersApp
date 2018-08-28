@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import {
   updateDinnerName,
   addDinner,
+  removeDinner,
   updateIngredientQuantity,
   addIngredientToDinner,
   removeIngredient
@@ -20,6 +21,8 @@ import {
   toggleBought
 } from "../../actions/ingredient";
 
+import { addDinnerToUser, removeDinnerFromUser } from "../../actions/user";
+
 import uuid from "../../utils/uuid";
 
 const styles = {
@@ -29,8 +32,9 @@ const styles = {
 };
 
 const mapStateToProps = state => {
+  const user_dinner_ids = state.user.dinners.map(d => d.id);
   return {
-    dinners: state.dinners,
+    dinners: state.dinners.filter(d => user_dinner_ids.includes(d.id)),
     ingredients: state.ingredients
   };
 };
@@ -38,7 +42,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateDinnerName: (id, text) => dispatch(updateDinnerName(id, text)),
-    addDinner: text => dispatch(addDinner(text)),
     updateIngredientName: (id, text) =>
       dispatch(updateIngredientName(id, text)),
     updateIngredientQuantity: (id, ingredient_id, quantity) =>
@@ -49,21 +52,22 @@ const mapDispatchToProps = dispatch => {
     removeIngredient: (id, ingredient_id) =>
       dispatch(removeIngredient(id, ingredient_id)),
     toggleBought: (id, ingredient_id) =>
-      dispatch(toggleBought(id, ingredient_id))
+      dispatch(toggleBought(id, ingredient_id)),
+    addDinner: (id, text) =>
+      dispatch(addDinner(id, text)) && dispatch(addDinnerToUser(id)),
+    removeDinner: id =>
+      dispatch(removeDinner(id)) && dispatch(removeDinnerFromUser(id))
   };
 };
 
-
-
-
 function Dinners(props) {
   const addNewDinner = () => {
-    const dinner_id = uuid()
-    const ingredient_id = uuid()
-    props.addDinner(dinner_id)
-    props.addIngredient(ingredient_id)
-    props.addIngredientToDinner(dinner_id, ingredient_id)
-  }
+    const dinner_id = uuid();
+    const ingredient_id = uuid();
+    props.addDinner(dinner_id);
+    props.addIngredient(ingredient_id);
+    props.addIngredientToDinner(dinner_id, ingredient_id);
+  };
 
   const { classes } = props;
   return (
@@ -80,12 +84,9 @@ function Dinners(props) {
         addIngredient={props.addIngredient}
         removeIngredient={props.removeIngredient}
         toggleBought={props.toggleBought}
+        removeDinner={props.removeDinner}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={addNewDinner}
-      >
+      <Button variant="contained" color="primary" onClick={addNewDinner}>
         Add Dinner
       </Button>
     </div>

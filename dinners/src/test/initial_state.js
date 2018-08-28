@@ -7,7 +7,8 @@ export const testState = {
         id: 0,
         dates: ["2018-08-20"]
       },
-      { id: 1,
+      {
+        id: 1,
         dates: ["2018-08-21"]
       },
       {
@@ -72,33 +73,33 @@ export const testState = {
       name: "bread",
       bought_dates: ["2018-08-15"],
       bought: true,
-      unitName: "loaf",      
+      unitName: "loaf"
     },
     {
       id: 1,
       name: "ham",
       bought_dates: ["2018-08-15"],
       bought: true,
-      unitName: "pound"
+      unitName: "pounds"
     },
     {
       id: 2,
       name: "beef",
       bought_dates: ["2018-08-15"],
       bought: false,
-      unitName: "pound"
+      unitName: "pounds"
     },
     {
       id: 3,
       name: "onion",
       bought: false,
-      bought_dates: ["2018-08-17"],
+      bought_dates: ["2018-08-17"]
     },
     {
       id: 4,
       name: "steak",
       bought: true,
-      bought_dates: ["2018-08-17"],
+      bought_dates: ["2018-08-17"]
     }
   ]
 };

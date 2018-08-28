@@ -1,7 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Grid, Typography, withStyles } from "@material-ui/core";
+import {
+  withStyles,
+  Table,
+  TableHead,
+  TableCell,
+  Paper,
+  TableBody,
+  TableRow,
+} from "@material-ui/core";
 
 import ShoppingListItem from "./ShoppingListItem";
 import { toggleBought } from "../../actions/ingredient";
@@ -84,8 +92,28 @@ function ShoppingList(props) {
 
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <Grid container spacing={16}>
+    <Paper className={classes.root}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Ingredient</TableCell>
+            <TableCell>Quantity</TableCell>
+            <TableCell>Bought</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{shopping_items}</TableBody>
+      </Table>
+    </Paper>
+  );
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(ShoppingList));
+
+/*
+<Grid container spacing={16}>
         <Grid item xs={3}>
           <Typography variant="title">Ingredient</Typography>
         </Grid>
@@ -96,12 +124,4 @@ function ShoppingList(props) {
           <Typography variant="title">Bought</Typography>
         </Grid>
       </Grid>
-      {shopping_items}
-    </div>
-  );
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ShoppingList));
+      */

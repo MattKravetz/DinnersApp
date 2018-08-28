@@ -16,34 +16,37 @@ const styles = {
   checked: {}
 };
 
-class Ingredient extends Component {
-  render() {
-    const { classes } = this.props;
+function Ingredient(props) {
+
+    const { classes } = props;
+    
     return (
       <Grid container spacing={16}>
         <Grid item xs={3}>
           <Input
             autoFocus
+            fullWidth
             type="text"
             name="name"
-            value={this.props.name}
-            onChange={this.props.handleChange}
-            onKeyDown={this.props.onKeyPress}
+            value={props.name}
+            onChange={props.updateName}
+            onKeyDown={props.onKeyPress}
           />
         </Grid>
         <Grid item xs={3}>
           <Input
+            fullWidth
             type="text"
             name="quantity"
-            value={this.props.quantity}
-            onChange={this.props.handleChange}
-            onKeyDown={this.props.onKeyPress}
+            value={props.quantity}
+            onChange={props.updateQuantity}
+            onKeyDown={props.onKeyPress}
           />
         </Grid>
         <Grid item xs={1}>
           <Checkbox
-            checked={this.props.isBought}
-            onChange={this.props.flipBoughtState}
+            checked={props.bought}
+            onChange={props.toggleBought}
             classes={{
               root: classes.root,
               checked: classes.checked
@@ -52,15 +55,14 @@ class Ingredient extends Component {
         </Grid>
         <Grid item xs={1}>
           <IconButton
-            onClick={e => this.props.deleteIngredient(this.props.id)}
-            disabled={this.props.isBought}
+            onClick={props.removeIngredient}
+            disabled={props.bought}
           >
             <DeleteIcon />
           </IconButton>
         </Grid>
       </Grid>
     );
-  }
 }
 
 export default withStyles(styles)(Ingredient);

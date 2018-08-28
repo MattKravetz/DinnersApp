@@ -45,8 +45,7 @@ class DinnerList extends Component {
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Dinner
               dinner={dinner}
-              addDinner={this.props.addDinner}
-              editDinner={this.props.editDinner}
+              updateDinnerName={this.props.updateDinnerName}
               deleteDinner={this.props.deleteDinner}
               updateDinner={this.props.updateDinner}
               expanded={this.state.expanded === dinner.id}
@@ -55,8 +54,14 @@ class DinnerList extends Component {
           <ExpansionPanelDetails>
             <EditDinner
               dinner={dinner}
+              ingredients={this.props.ingredients}
               updateDinner={this.props.updateDinner}
-              updateIngredientBoughtState={this.props.updateIngredientBoughtState}
+              updateIngredientName={this.props.updateIngredientName}
+              updateIngredientQuantity={this.props.updateIngredientQuantity}
+              addIngredient={this.props.addIngredient}
+              addIngredientToDinner={this.props.addIngredientToDinner}
+              removeIngredient={this.props.removeIngredient}
+              toggleBought={this.props.toggleBought}
             />
           </ExpansionPanelDetails>
         </ExpansionPanel>

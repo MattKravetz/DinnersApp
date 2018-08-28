@@ -6,7 +6,6 @@ import User from "./User/User"
 import ShoppingList from "./ShoppingList/ShoppingList";
 import Dinners from "./Dinners/Dinners";
 import ButtonAppBar from "./AppBar";
-import uuid from "../utils/uuid";
 
 const styles = theme => {};
 

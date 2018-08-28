@@ -30,6 +30,7 @@ function EditDinner(props) {
     const ing = props.ingredients.filter(i => i.id === dinner_ing.id)[0];
     return (
       <Ingredient
+        ingredients={props.ingredients}
         name={ing.name}
         quantity={dinner_ing.quantity}
         id={ing.id}

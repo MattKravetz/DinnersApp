@@ -1,5 +1,11 @@
 import React from "react";
-import { ListItem, Grid, Checkbox, withStyles, Typography } from "@material-ui/core";
+import {
+  ListItem,
+  Grid,
+  Checkbox,
+  withStyles,
+  Typography
+} from "@material-ui/core";
 import green from "@material-ui/core/colors/green";
 
 const styles = {
@@ -22,7 +28,10 @@ function ShoppingListItem(props) {
           <Typography variant="body2">{props.name}</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography variant="body2">{props.quantity}</Typography>          
+          <Typography variant="body2">
+            {props.quantity ? props.quantity : ""}{" "}
+            {props.unitName ? props.unitName : ""}
+          </Typography>
         </Grid>
         <Grid item xs={1}>
           <Checkbox

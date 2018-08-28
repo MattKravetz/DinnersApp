@@ -1,7 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import { Grid, Typography, withStyles } from "@material-ui/core";
 
 import ShoppingListItem from "./ShoppingListItem";
+import { toggleBought } from "../../actions/ingredient";
+
+const mapStateToProps = state => {
+  return {
+    dinners: state.dinners,
+    ingredients: state.ingredients
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleBought: (id, ingredient_id) =>
+      dispatch(toggleBought(id, ingredient_id))
+  };
+};
 
 const styles = {
   root: {
@@ -10,17 +27,24 @@ const styles = {
 };
 
 function ShoppingList(props) {
-  const ingredients = [].concat.apply(
-    [],
-    props.dinners.map(dinner => {
-      return dinner.ingredients.filter(i => i.name !== "");
-    })
-  );
+  const ingredients = props.ingredients;
 
   // Combine ingredients with the same name
   const combined_ingredients = new Map();
   ingredients.forEach(ing => {
-    let combined_ing = combined_ingredients.get(ing.name);
+    if (ing === undefined || ing.name === "") {
+      return;
+    }
+
+    // sum quantities from all dinners
+    const ing_quantity = [].concat
+      .apply([], props.dinners.map(d => d.ingredients))
+      .filter(dinner_ing => dinner_ing.id === ing.id)
+      .map(dinner_ing => dinner_ing.quantity)
+      .filter(quantity => quantity !== undefined)
+      .reduce((a, b) => Number(a) + Number(b), 0);
+
+    let combined_ing = combined_ingredients.get(ing.name.toLowerCase());
     if (combined_ing !== undefined) {
       // This ingredient is used 2+ times in the list of dinners
       // combine this version with the version present in the map
@@ -28,15 +52,19 @@ function ShoppingList(props) {
       // and setting the bought state to all(ing.isBought for ing in ingredients) (:( python)
       combined_ing = {
         ...combined_ing,
-        quantity: `${combined_ing.quantity}; ${ing.quantity}`,
-        isBought: combined_ing.isBought && ing.isBought ? true : false
+        bought: combined_ing.bought && ing.bought ? true : false,
+        bought_dates: combined_ing.bought_dates.concat(ing.bought_dates),
+        quantity: combined_ing.quantity + ing_quantity
       };
     } else {
-      combined_ing = ing;
+      combined_ing = {
+        ...ing,
+        quantity: ing_quantity
+      };
     }
-    combined_ingredients.set(combined_ing.name, combined_ing);
+    combined_ingredients.set(combined_ing.name.toLowerCase(), combined_ing);
   });
-
+  console.log(combined_ingredients);
   const shopping_items = Array.from(
     combined_ingredients.values(),
     (ing, name) => {
@@ -45,11 +73,10 @@ function ShoppingList(props) {
           key={ing.id}
           name={ing.name}
           quantity={ing.quantity}
-          isBought={ing.isBought}
-          updateIngredientBoughtState={ing_name =>
-            props.updateIngredientBoughtState(ing_name, !ing.isBought)
-          }
+          isBought={ing.bought}
+          updateIngredientBoughtState={() => props.toggleBought(ing.id)}
           id={ing.id}
+          unitName={ing.unitName}
         />
       );
     }
@@ -74,4 +101,7 @@ function ShoppingList(props) {
   );
 }
 
-export default withStyles(styles)(ShoppingList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(ShoppingList));

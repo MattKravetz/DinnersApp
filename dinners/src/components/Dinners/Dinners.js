@@ -13,11 +13,13 @@ import {
   addIngredientToDinner,
   removeIngredient
 } from "../../actions/dinner";
+
 import {
   updateIngredientName,
   addIngredient,
   toggleBought
 } from "../../actions/ingredient";
+
 import uuid from "../../utils/uuid";
 
 const styles = {

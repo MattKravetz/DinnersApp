@@ -32,7 +32,7 @@ function ShoppingList(props) {
   // Combine ingredients with the same name
   const combined_ingredients = new Map();
   ingredients.forEach(ing => {
-    if (ing === undefined || ing.name === "") {
+    if (ing === undefined || ing.name === undefined || ing.name === "") {
       return;
     }
 

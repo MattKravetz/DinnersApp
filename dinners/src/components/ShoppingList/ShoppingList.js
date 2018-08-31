@@ -14,6 +14,8 @@ import {
 import ShoppingListItem from "./ShoppingListItem";
 import { toggleBought } from "../../actions/ingredient";
 
+// TODO: Push BOUGHT ingredients to the bottom of the list
+
 const mapStateToProps = state => {
   return {
     dinners: state.dinners,

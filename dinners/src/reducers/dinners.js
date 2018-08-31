@@ -24,12 +24,15 @@ export default function dinnersReducer(state = [], action) {
         }
       });
     case ADD_DINNER:
+      const date = new Date();
+      const today = date.toLocaleDateString();
       return [
         ...state,
         {
           id: action.uuid,
           name: action.name,
-          ingredients: []
+          ingredients: [],
+          dates: [today]
         }
       ];
     case REMOVE_DINNER:

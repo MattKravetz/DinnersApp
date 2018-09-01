@@ -34,7 +34,9 @@ export default function ingredientsReducer(state = [], action) {
       return [
         ...state,
         {
-          id: action.uuid
+          id: action.uuid,
+          name: "",
+          quantity: ""
         }
       ];
 

@@ -8,6 +8,20 @@ export const UPDATE_INGREDIENT_QUANTITY = "UPDATE_INGREDIENT_QUANTITY";
 export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
 export const ADD_INGREDIENT_TO_DINNER = "ADD_INGREDIENT_TO_DINNER";
 
+const updateDatabaseDinner = (id, attr, val, how = "create") => {
+  const dbPath = "dinners/" + id + "/" + attr;
+  switch (how) {
+    case "append":
+      database.ref(dbPath).push(val);
+      return;
+    case "create":
+      database.ref().update({ [dbPath]: val });
+      return;
+    default:
+      database.ref().update({ [dbPath]: val });
+  }
+};
+
 export function addDinner(uuid, name = "New Dinner") {
   const date = new Date();
   const today = date.toLocaleDateString();
@@ -17,18 +31,22 @@ export function addDinner(uuid, name = "New Dinner") {
 }
 
 export function removeDinner(uuid) {
+  database.ref("dinners/" + uuid).remove();
   return { type: REMOVE_DINNER, uuid };
 }
 
 export function updateDinnerName(id, text) {
+  updateDatabaseDinner(id, "name", text);
   return { type: UPDATE_DINNER_NAME, id, text };
 }
 
 export function addIngredientToDinner(id, ingredient_id) {
+  updateDatabaseDinner(id, "ingredients", {id: ingredient_id})
   return { type: ADD_INGREDIENT_TO_DINNER, id, ingredient_id };
 }
 
 export function removeIngredient(id, ingredient_id) {
+  database.ref("dinners/" + id + "/ingredients/" + ingredient_id).remove()
   return { type: REMOVE_INGREDIENT, id, ingredient_id };
 }
 

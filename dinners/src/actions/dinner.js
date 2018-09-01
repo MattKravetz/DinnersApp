@@ -1,3 +1,5 @@
+import { database } from "../config/firebase";
+
 export const REMOVE_DINNER = "REMOVE_DINNER";
 export const ADD_DINNER = "ADD_DINNER";
 export const UPDATE_DINNER_NAME = "UPDATE_DINNER_NAME";
@@ -7,7 +9,11 @@ export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
 export const ADD_INGREDIENT_TO_DINNER = "ADD_INGREDIENT_TO_DINNER";
 
 export function addDinner(uuid, name = "New Dinner") {
-  return { type: ADD_DINNER, uuid, name };
+  const date = new Date();
+  const today = date.toLocaleDateString();
+  database.ref("dinners/" + uuid).set({ id: uuid, dates: [today] });
+
+  return { type: ADD_DINNER, uuid, name, today };
 }
 
 export function removeDinner(uuid) {

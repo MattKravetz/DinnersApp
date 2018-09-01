@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { withStyles } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
-import { Input, Checkbox, IconButton, TextField } from "@material-ui/core";
+import { Checkbox, IconButton, TextField } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Grid from "@material-ui/core/Grid";
 

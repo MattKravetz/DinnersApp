@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  ListItem,
-  Grid,
   Checkbox,
   withStyles,
   Typography,

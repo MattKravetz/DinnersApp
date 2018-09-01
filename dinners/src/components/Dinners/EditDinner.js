@@ -14,10 +14,12 @@ const styles = theme => ({
 });
 
 function EditDinner(props) {
-  const handleKeyPress = e => {    
-    const last_ingredient = props.dinner.ingredients.slice(-1)[0];
+  const handleKeyPress = e => {
+    const last_ingredient = props.ingredients.filter(ing => {
+      return ing.id === props.dinner.ingredients.slice(-1)[0].id;
+    })[0];
     const enterKeycode = 13;
-    if (e.keyCode === enterKeycode && last_ingredient.name !== undefined) {
+    if (e.keyCode === enterKeycode && last_ingredient.name !== "") {
       const new_ing_id = uuid();
       props.addIngredient(new_ing_id);
       props.addIngredientToDinner(props.dinner.id, new_ing_id);

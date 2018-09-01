@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import persistState from "redux-localstorage";
 import { compose, createStore } from "redux";
-import dinnersApp from "./reducers/dinners_app";
+import dinnersApp from "./reducers/index";
 // import initialState from './reducers/initial_state'
 import { testState as initialState } from "./test/initial_state";
 

@@ -32,7 +32,8 @@ const mapDispatchToProps = dispatch => {
 
 const styles = {
   root: {
-    padding: 25
+    padding: 25,
+    justifyContent: "center"
   }
 };
 

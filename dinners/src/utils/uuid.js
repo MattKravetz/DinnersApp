@@ -1,4 +1,4 @@
-let latest = JSON.parse(localStorage.getItem("uuid-count")) || { count:"0" }
+let latest = JSON.parse(localStorage.getItem("uuid-count")) || { count:"999" }
 
 export default function uuid(){
     const new_count = Number(latest["count"]) + 1

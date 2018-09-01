@@ -12,9 +12,10 @@ import dinnersApp from "./reducers/index";
 // import initialState from './reducers/initial_state'
 import { testState as initialState } from "./test/initial_state";
 
-const enhancer = compose(
-  persistState(),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const enhancer = composeEnhancers(
+  persistState()
 );
 
 const store = createStore(dinnersApp, initialState, enhancer);

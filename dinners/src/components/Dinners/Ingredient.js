@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { withStyles } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
-import { Input, Checkbox, IconButton } from "@material-ui/core";
+import { Input, Checkbox, IconButton, TextField } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Grid from "@material-ui/core/Grid";
 
@@ -17,52 +17,48 @@ const styles = {
 };
 
 function Ingredient(props) {
+  const { classes } = props;
 
-    const { classes } = props;
-    
-    return (
-      <Grid container spacing={16}>
-        <Grid item xs={3}>
-          <Input
-            autoFocus
-            fullWidth
-            type="text"
-            name="name"
-            value={props.name}
-            onChange={props.updateName}
-            onKeyDown={props.onKeyPress}
-          />
-        </Grid>
-        <Grid item xs={3}>
-          <Input
-            fullWidth
-            type="text"
-            name="quantity"
-            value={props.quantity}
-            onChange={props.updateQuantity}
-            onKeyDown={props.onKeyPress}
-          />
-        </Grid>
-        <Grid item xs={1}>
-          <Checkbox
-            checked={props.bought}
-            onChange={props.toggleBought}
-            classes={{
-              root: classes.root,
-              checked: classes.checked
-            }}
-          />
-        </Grid>
-        <Grid item xs={1}>
-          <IconButton
-            onClick={props.removeIngredient}
-            disabled={props.bought}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </Grid>
+  return (
+    <Grid container spacing={16}>
+      <Grid item xs={3}>
+        <TextField
+          autoFocus
+          fullWidth
+          type="text"
+          name="name"
+          value={props.name}
+          onChange={props.updateName}
+          onKeyDown={props.onKeyPress}
+        />
       </Grid>
-    );
+      <Grid item xs={3}>
+        <TextField
+          fullWidth
+          type="text"
+          name="quantity"
+          value={props.quantity}
+          onChange={props.updateQuantity}
+          onKeyDown={props.onKeyPress}
+        />
+      </Grid>
+      <Grid item xs={1}>
+        <Checkbox
+          checked={props.bought}
+          onChange={props.toggleBought}
+          classes={{
+            root: classes.root,
+            checked: classes.checked
+          }}
+        />
+      </Grid>
+      <Grid item xs={1}>
+        <IconButton onClick={props.removeIngredient} disabled={props.bought}>
+          <DeleteIcon />
+        </IconButton>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default withStyles(styles)(Ingredient);

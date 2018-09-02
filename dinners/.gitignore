@@ -10,7 +10,7 @@
 /build
 
 # keys
-/config/dev.js
+src/config/dev.js
 
 # misc
 .vscode

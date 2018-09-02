@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => {
     toggleFavorite: (dinner, date) =>
       dinner.favorited
         ? dispatch(removeFavorite(dinner.id))
-        : dispatch(addFavorite(dinner.id, date))
+        : dispatch(addFavorite(dinner.id))
   };
 };
 

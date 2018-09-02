@@ -1,7 +1,8 @@
 import {
   UPDATE_INGREDIENT_NAME,
   TOGGLE_BOUGHT,
-  ADD_INGREDIENT
+  ADD_INGREDIENT,
+  UPDATE_UNIT_NAME
 } from "../actions/ingredient";
 
 export default function ingredientsReducer(state = [], action) {
@@ -39,7 +40,14 @@ export default function ingredientsReducer(state = [], action) {
           quantity: ""
         }
       ];
-
+    case UPDATE_UNIT_NAME:
+      return state.map(ing => {
+        if (ing.id === action.id) {
+          return { ...ing, unitName: action.name };
+        } else {
+          return ing;
+        }
+      });
     default:
       return state;
   }

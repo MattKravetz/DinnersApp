@@ -17,7 +17,8 @@ import {
 import {
   updateIngredientName,
   addIngredient,
-  toggleBought
+  toggleBought,
+  updateUnitName
 } from "../../actions/ingredient";
 
 import {
@@ -71,7 +72,8 @@ const mapDispatchToProps = dispatch => {
     toggleFavorite: (dinner, favorited) =>
       favorited
         ? dispatch(removeFavorite(dinner))
-        : dispatch(addFavorite(dinner))
+        : dispatch(addFavorite(dinner)),
+    updateUnitName: (ingredient_id, name) => dispatch(updateUnitName(ingredient_id, name))
   };
 };
 
@@ -101,6 +103,7 @@ function Dinners(props) {
         toggleBought={props.toggleBought}
         removeDinner={props.removeDinner}
         toggleFavorite={props.toggleFavorite}
+        updateUnitName={props.updateUnitName}
       />
       <Button variant="contained" color="primary" onClick={addNewDinner}>
         Add Dinner

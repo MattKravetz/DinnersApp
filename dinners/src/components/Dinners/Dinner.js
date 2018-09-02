@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Grid,
-  Input,
+  TextField,
   Icon,
   IconButton,
   Typography,
@@ -25,10 +25,10 @@ const Dinners = props => {
   const focusOnTextIngredients = () => {}; // tood: grab ref for the first ingredient, then focus
   const { classes } = props;
   const header = props.expanded ? (
-    <Input
-      fullWidth
+    <TextField
       autoFocus
-      className={classes.display1}
+      multiline
+      InputProps={{ classes: { root: classes.display1 } }}
       type="text"
       value={props.dinner.name}
       onChange={e => props.updateDinnerName(props.dinner.id, e.target.value)}
@@ -53,7 +53,7 @@ const Dinners = props => {
         <IconButton
           onClick={e => {
             e.stopPropagation();
-            props.toggleFavorite(props.dinner.id, props.dinner.favorited)
+            props.toggleFavorite(props.dinner.id, props.dinner.favorited);
           }}
         >
           {props.dinner.favorited ? (

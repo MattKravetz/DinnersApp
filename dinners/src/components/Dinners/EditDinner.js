@@ -45,10 +45,14 @@ function EditDinner(props) {
         removeIngredient={e => props.removeIngredient(dinner.id, ing.id)}
         bought={ing.bought}
         toggleBought={e => props.toggleBought(ing.id)}
+        unitName={ing.unitName}
+        updateUnitName={name => {
+          if (name) props.updateUnitName(ing.id, name);
+        }}
       />
     );
   });
-
+  console.log(props);
   return (
     <div className={classes.root}>
       <Grid container spacing={16}>

@@ -28,13 +28,6 @@
   ],
   "ingredients": [
     {
-      "id": -1,
-      "name": "New Ingredient",
-      "bought_dates": [],
-      "bought": false,
-      "unitName": ""
-    },
-    {
       "id": 0,
       "name": "bread",
       "bought_dates": ["2018-08-15"],

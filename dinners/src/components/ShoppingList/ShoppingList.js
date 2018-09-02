@@ -8,7 +8,7 @@ import {
   TableCell,
   Paper,
   TableBody,
-  TableRow,
+  TableRow
 } from "@material-ui/core";
 
 import ShoppingListItem from "./ShoppingListItem";
@@ -75,7 +75,6 @@ function ShoppingList(props) {
     }
     combined_ingredients.set(combined_ing.name.toLowerCase(), combined_ing);
   });
-  console.log(combined_ingredients);
   const shopping_items = Array.from(
     combined_ingredients.values(),
     (ing, name) => {
@@ -114,17 +113,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withStyles(styles)(ShoppingList));
-
-/*
-<Grid container spacing={16}>
-        <Grid item xs={3}>
-          <Typography variant="title">Ingredient</Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <Typography variant="title">Quantity</Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="title">Bought</Typography>
-        </Grid>
-      </Grid>
-      */

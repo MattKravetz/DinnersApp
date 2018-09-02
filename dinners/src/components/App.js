@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 import { getInitialState } from "../actions/initialStateFromFirebase";
 import { connect } from "react-redux";
-
+import { withRouter } from "react-router-dom";
 import User from "./User/User";
 import ShoppingList from "./ShoppingList/ShoppingList";
 import Dinners from "./Dinners/Dinners";
@@ -25,15 +25,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 class App extends Component {
-
   componentWillMount() {
-    console.log(this.props);
-    console.log("hi!");
     this.props.getInitialState();
   }
 
   render() {
-    console.log(this.props.loading);
     const content = this.props.loading ? (
       <p>Loading...</p>
     ) : (
@@ -53,7 +49,9 @@ class App extends Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withStyles(styles)(App))
+);

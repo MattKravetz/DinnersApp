@@ -12,7 +12,7 @@ export default function firebaseReducer(state = {}, action) {
         dinners: Object.values(action.state.dinners).map(d => {
           return {
             ...d,
-            ingredients: d.ingredients || []
+            ingredients: Object.values(d.ingredients) || []
           };
         }),
         ingredients: Object.values(action.state.ingredients),

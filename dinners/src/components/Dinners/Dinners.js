@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import DinnerList from "./DinnerList";
 
 import { Button, withStyles } from "@material-ui/core";
@@ -32,7 +31,6 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-  console.log("he-yah!", state);
   const user_dinner_ids = state.user.dinners.map(d => d.id);
   return {
     dinners: Object.values(state.dinners).filter(d =>

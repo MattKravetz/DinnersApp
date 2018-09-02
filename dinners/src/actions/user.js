@@ -14,8 +14,7 @@ export function updateName(text) {
 export function addDinnerToUser(dinner) {
   const date = new Date();
   const today = date.toLocaleDateString();
-  const newUserDinner = database.ref("user/dinners/").push();
-  newUserDinner.set({ id: dinner, dates: [today] });
+  database.ref("user/dinners/" + dinner).set({ id: dinner, dates: [today] });
   return { type: ADD_DINNER_TO_USER, dinner, today };
 }
 

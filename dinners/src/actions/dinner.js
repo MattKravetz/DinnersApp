@@ -17,7 +17,6 @@ export function addDinner(uuid, name = "New Dinner") {
 }
 
 export function removeDinner(uuid) {
-  database.ref("dinners/" + uuid).remove();
   return { type: REMOVE_DINNER, uuid };
 }
 

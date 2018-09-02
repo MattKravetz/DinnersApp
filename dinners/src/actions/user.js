@@ -19,6 +19,8 @@ export function addDinnerToUser(dinner) {
 }
 
 export function removeDinnerFromUser(dinner) {
+  console.log("deleting", "users/dinners/" + dinner);
+  database.ref("user/dinners/" + dinner).remove();
   return { type: REMOVE_DINNER_FROM_USER, dinner };
 }
 

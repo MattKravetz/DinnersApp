@@ -7,7 +7,8 @@ export default function firebaseReducer(state = {}, action) {
         ...action.state,
         user: {
           ...action.state.user,
-          dinners: Object.values(action.state.user.dinners)
+          dinners: Object.values(action.state.user.dinners),
+          favorites: Object.values(action.state.user.favorites)
         },
         dinners: Object.values(action.state.dinners).map(d => {
           return {

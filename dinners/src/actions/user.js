@@ -1,6 +1,6 @@
 import { database } from "../config/firebase";
+import { today } from "../utils/today"
 
-import moment from 'moment'
 
 export const UPDATE_NAME = "UPDATE_NAME";
 export const ADD_DINNER = "ADD_DINNER";
@@ -8,8 +8,6 @@ export const REMOVE_DINNER_FROM_USER = "REMOVE_DINNER_FROM_USER";
 export const ADD_DINNER_TO_USER = "ADD_DINNER_TO_USER";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
-
-const today = moment.apply().format("YYYY-MM-DD").toString()
 
 export function updateName(text) {
   return { type: UPDATE_NAME, text };

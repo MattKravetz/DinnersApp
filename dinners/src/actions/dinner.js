@@ -23,11 +23,14 @@ const updateDatabaseDinner = (id, attr, val, how = "create") => {
 };
 
 export function addDinner(uuid, name = "New Dinner") {
-  const date = new Date();
-  const today = date.toLocaleDateString();
-  database.ref("dinners/" + uuid).set({ id: uuid, dates: [today] });
+  const newDinner = database.ref("dinners/").push();
+  newDinner.set({
+    id: uuid,
+    name: "New Dinner",
+    ingredients: []
+  });
 
-  return { type: ADD_DINNER, uuid, name, today };
+  return { type: ADD_DINNER, uuid, name };
 }
 
 export function removeDinner(uuid) {
@@ -41,12 +44,12 @@ export function updateDinnerName(id, text) {
 }
 
 export function addIngredientToDinner(id, ingredient_id) {
-  updateDatabaseDinner(id, "ingredients", {id: ingredient_id})
+  //updateDatabaseDinner(id, "ingredients", { id: ingredient_id });
   return { type: ADD_INGREDIENT_TO_DINNER, id, ingredient_id };
 }
 
 export function removeIngredient(id, ingredient_id) {
-  database.ref("dinners/" + id + "/ingredients/" + ingredient_id).remove()
+  database.ref("dinners/" + id + "/ingredients/" + ingredient_id).remove();
   return { type: REMOVE_INGREDIENT, id, ingredient_id };
 }
 

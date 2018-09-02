@@ -75,9 +75,9 @@ function ShoppingList(props) {
     }
     combined_ingredients.set(combined_ing.name.toLowerCase(), combined_ing);
   });
-  const shopping_items = Array.from(
-    combined_ingredients.values(),
-    (ing, name) => {
+  const shopping_items = Array.from(combined_ingredients.values())
+    .sort(ing => ing.bought)
+    .map(ing => {
       return (
         <ShoppingListItem
           key={ing.id}
@@ -89,8 +89,7 @@ function ShoppingList(props) {
           unitName={ing.unitName}
         />
       );
-    }
-  );
+    });
 
   const { classes } = props;
   return (

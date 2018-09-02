@@ -9,7 +9,11 @@
 # production
 /build
 
+# keys
+src/config/dev.js
+
 # misc
+.vscode
 .DS_Store
 .env.local
 .env.development.local

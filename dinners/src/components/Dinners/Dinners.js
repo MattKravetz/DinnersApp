@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import DinnerList from "./DinnerList";
 
 import { Button, withStyles } from "@material-ui/core";
@@ -18,10 +17,16 @@ import {
 import {
   updateIngredientName,
   addIngredient,
-  toggleBought
+  toggleBought,
+  updateUnitName
 } from "../../actions/ingredient";
 
-import { addDinnerToUser, removeDinnerFromUser } from "../../actions/user";
+import {
+  addDinnerToUser,
+  removeDinnerFromUser,
+  addFavorite,
+  removeFavorite
+} from "../../actions/user";
 
 import uuid from "../../utils/uuid";
 
@@ -34,7 +39,14 @@ const styles = {
 const mapStateToProps = state => {
   const user_dinner_ids = state.user.dinners.map(d => d.id);
   return {
-    dinners: state.dinners.filter(d => user_dinner_ids.includes(d.id)),
+    dinners: Object.values(state.dinners)
+      .filter(d => user_dinner_ids.includes(d.id))
+      .map(d => {
+        return {
+          ...d,
+          favorited: state.user.favorites.map(f => f.id).includes(d.id)
+        };
+      }),
     ingredients: state.ingredients
   };
 };
@@ -56,7 +68,12 @@ const mapDispatchToProps = dispatch => {
     addDinner: (id, text) =>
       dispatch(addDinner(id, text)) && dispatch(addDinnerToUser(id)),
     removeDinner: id =>
-      dispatch(removeDinner(id)) && dispatch(removeDinnerFromUser(id))
+      dispatch(removeDinner(id)) && dispatch(removeDinnerFromUser(id)),
+    toggleFavorite: (dinner, favorited) =>
+      favorited
+        ? dispatch(removeFavorite(dinner))
+        : dispatch(addFavorite(dinner)),
+    updateUnitName: (ingredient_id, name) => dispatch(updateUnitName(ingredient_id, name))
   };
 };
 
@@ -85,6 +102,8 @@ function Dinners(props) {
         removeIngredient={props.removeIngredient}
         toggleBought={props.toggleBought}
         removeDinner={props.removeDinner}
+        toggleFavorite={props.toggleFavorite}
+        updateUnitName={props.updateUnitName}
       />
       <Button variant="contained" color="primary" onClick={addNewDinner}>
         Add Dinner

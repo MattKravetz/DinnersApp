@@ -49,6 +49,8 @@ class DinnerList extends Component {
               removeDinner={this.props.removeDinner}
               updateDinner={this.props.updateDinner}
               expanded={this.state.expanded === dinner.id}
+              favorited={this.props.favorited}
+              toggleFavorite={this.props.toggleFavorite}
             />
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
@@ -62,6 +64,8 @@ class DinnerList extends Component {
               addIngredientToDinner={this.props.addIngredientToDinner}
               removeIngredient={this.props.removeIngredient}
               toggleBought={this.props.toggleBought}
+              updateUnitName={this.props.updateUnitName}
+              unitName={dinner.unitName}
             />
           </ExpansionPanelDetails>
         </ExpansionPanel>

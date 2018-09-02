@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  ListItem,
-  Grid,
   Checkbox,
   withStyles,
   Typography,
@@ -49,31 +47,3 @@ function ShoppingListItem(props) {
 }
 
 export default withStyles(styles)(ShoppingListItem);
-
-/*
-
-    <ListItem key={props.id}>
-      <Grid container spacing={16}>
-        <Grid item xs={3}>
-          <Typography variant="body2">{props.name}</Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <Typography variant="body2">
-            {props.quantity ? props.quantity : ""}{" "}
-            {props.unitName ? props.unitName : ""}
-          </Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Checkbox
-            checked={props.isBought}
-            classes={{
-              root: classes.root,
-              checked: classes.checked
-            }}
-            onChange={e => props.updateIngredientBoughtState(props.name)}
-          />
-        </Grid>
-      </Grid>
-    </ListItem>
-
-*/

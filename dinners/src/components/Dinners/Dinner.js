@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Grid,
-  Input,
+  TextField,
+  Icon,
   IconButton,
   Typography,
   withStyles
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 
 const styles = theme => ({
   display1: {
@@ -25,10 +25,10 @@ const Dinners = props => {
   const focusOnTextIngredients = () => {}; // tood: grab ref for the first ingredient, then focus
   const { classes } = props;
   const header = props.expanded ? (
-    <Input
-      fullWidth
+    <TextField
       autoFocus
-      className={classes.display1}
+      multiline
+      InputProps={{ classes: { root: classes.display1 } }}
       type="text"
       value={props.dinner.name}
       onChange={e => props.updateDinnerName(props.dinner.id, e.target.value)}
@@ -50,8 +50,17 @@ const Dinners = props => {
         {header}
       </Grid>
       <Grid item xs={2}>
-        <IconButton>
-          <EditIcon />
+        <IconButton
+          onClick={e => {
+            e.stopPropagation();
+            props.toggleFavorite(props.dinner.id, props.dinner.favorited);
+          }}
+        >
+          {props.dinner.favorited ? (
+            <Icon>star</Icon>
+          ) : (
+            <Icon>star_border</Icon>
+          )}
         </IconButton>
         <IconButton
           onClick={e => {

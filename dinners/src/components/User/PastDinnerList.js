@@ -30,8 +30,6 @@ class PastDinnerList extends React.Component {
   }
 
   render() {
-    const cur_date = new Date();
-    const iso_date = cur_date.toISOString();
     const filtered_dinners = this.state.favorites_only
       ? this.props.dinners.filter(d => d.favorited)
       : this.props.dinners.slice();
@@ -46,7 +44,7 @@ class PastDinnerList extends React.Component {
               onClick={e => {
                 console.log("favorited", d.favorited);
                 e.stopPropagation();
-                this.props.toggleFavorite(d, iso_date);
+                this.props.toggleFavorite(d);
               }}
             >
               {d.favorited ? <Icon>star</Icon> : <Icon>star_border</Icon>}

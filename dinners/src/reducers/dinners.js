@@ -8,7 +8,6 @@ import {
   REMOVE_DINNER
 } from "../actions/dinner";
 
-import uuid from "../utils/uuid";
 
 export default function dinnersReducer(state = [], action) {
   switch (action.type) {
@@ -24,15 +23,13 @@ export default function dinnersReducer(state = [], action) {
         }
       });
     case ADD_DINNER:
-      const date = new Date();
-      const today = date.toLocaleDateString();
       return [
         ...state,
         {
           id: action.uuid,
           name: action.name,
           ingredients: [],
-          dates: [today]
+          dates: [action.today]
         }
       ];
     case REMOVE_DINNER:

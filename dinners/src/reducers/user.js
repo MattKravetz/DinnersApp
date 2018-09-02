@@ -17,8 +17,10 @@ export default function userReducer(state = {}, action) {
     case ADD_DINNER_TO_USER:
       return {
         ...state,
-        dinners: [...state.dinners, { id: action.dinner, dates: [action.date] }]
-        // todo: combine dinners instead of just adding a new one
+        dinners: [
+          ...state.dinners,
+          { id: action.dinner, dates: [action.today] }
+        ]
       };
 
     case REMOVE_DINNER_FROM_USER:

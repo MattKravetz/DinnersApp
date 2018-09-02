@@ -33,9 +33,14 @@ const styles = {
 const mapStateToProps = state => {
   const user_dinner_ids = state.user.dinners.map(d => d.id);
   return {
-    dinners: Object.values(state.dinners).filter(d =>
-      user_dinner_ids.includes(d.id)
-    ),
+    dinners: Object.values(state.dinners)
+      .filter(d => user_dinner_ids.includes(d.id))
+      .map(d => {
+        return {
+          ...d,
+          favorited: state.user.favorites.map(f => f.id).includes(d.id)
+        };
+      }),
     ingredients: state.ingredients
   };
 };

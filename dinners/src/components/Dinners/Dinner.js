@@ -2,12 +2,12 @@ import React from "react";
 import {
   Grid,
   Input,
+  Icon,
   IconButton,
   Typography,
   withStyles
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 
 const styles = theme => ({
   display1: {
@@ -51,7 +51,11 @@ const Dinners = props => {
       </Grid>
       <Grid item xs={2}>
         <IconButton>
-          <EditIcon />
+          {props.dinner.favorited ? (
+            <Icon>star</Icon>
+          ) : (
+            <Icon>star_border</Icon>
+          )}
         </IconButton>
         <IconButton
           onClick={e => {

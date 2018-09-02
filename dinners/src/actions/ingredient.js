@@ -10,8 +10,10 @@ export function updateIngredientName(id, text) {
 }
 
 export function toggleBought(id) {
-  //const dbPath = {["ingredients/" + id + "/bought"]: }
-  //database.ref().update(dbPath)
+  const boughtPath = "ingredients/" + id + "/bought";
+  database.ref(boughtPath).once("value").then(snapshot => {
+    database.ref().update({[boughtPath]: !snapshot.val()});  
+  })
   return { type: TOGGLE_BOUGHT, id };
 }
 

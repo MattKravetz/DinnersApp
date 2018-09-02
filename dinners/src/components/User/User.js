@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleFavorite: (dinner, date) =>
+    toggleFavorite: dinner=>
       dinner.favorited
         ? dispatch(removeFavorite(dinner.id))
         : dispatch(addFavorite(dinner.id))

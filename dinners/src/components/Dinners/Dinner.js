@@ -50,7 +50,12 @@ const Dinners = props => {
         {header}
       </Grid>
       <Grid item xs={2}>
-        <IconButton>
+        <IconButton
+          onClick={e => {
+            e.stopPropagation();
+            props.toggleFavorite(props.dinner.id, props.dinner.favorited)
+          }}
+        >
           {props.dinner.favorited ? (
             <Icon>star</Icon>
           ) : (

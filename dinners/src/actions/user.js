@@ -1,6 +1,5 @@
 import { database } from "../config/firebase";
-import { today } from "../utils/today"
-
+import { today } from "../utils/today";
 
 export const UPDATE_NAME = "UPDATE_NAME";
 export const ADD_DINNER = "ADD_DINNER";
@@ -14,8 +13,6 @@ export function updateName(text) {
 }
 
 export function addDinnerToUser(dinner) {
-  //const date = new Date();
-  //const today = date.toISOString();
   database.ref("user/dinners/" + dinner).set({ id: dinner, dates: [today] });
   return { type: ADD_DINNER_TO_USER, dinner, today };
 }
@@ -27,8 +24,6 @@ export function removeDinnerFromUser(dinner) {
 }
 
 export function addFavorite(dinner) {
-  //const date = new Date();
-  // const today = date.toISOString();
   database
     .ref("user/favorites/" + dinner)
     .set({ id: dinner, favorited_date: today });

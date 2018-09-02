@@ -20,7 +20,12 @@ import {
   toggleBought
 } from "../../actions/ingredient";
 
-import { addDinnerToUser, removeDinnerFromUser } from "../../actions/user";
+import {
+  addDinnerToUser,
+  removeDinnerFromUser,
+  addFavorite,
+  removeFavorite
+} from "../../actions/user";
 
 import uuid from "../../utils/uuid";
 
@@ -62,7 +67,11 @@ const mapDispatchToProps = dispatch => {
     addDinner: (id, text) =>
       dispatch(addDinner(id, text)) && dispatch(addDinnerToUser(id)),
     removeDinner: id =>
-      dispatch(removeDinner(id)) && dispatch(removeDinnerFromUser(id))
+      dispatch(removeDinner(id)) && dispatch(removeDinnerFromUser(id)),
+    toggleFavorite: (dinner, favorited) =>
+      favorited
+        ? dispatch(removeFavorite(dinner))
+        : dispatch(addFavorite(dinner))
   };
 };
 
@@ -91,6 +100,7 @@ function Dinners(props) {
         removeIngredient={props.removeIngredient}
         toggleBought={props.toggleBought}
         removeDinner={props.removeDinner}
+        toggleFavorite={props.toggleFavorite}
       />
       <Button variant="contained" color="primary" onClick={addNewDinner}>
         Add Dinner

@@ -6,19 +6,15 @@ import registerServiceWorker from "./registerServiceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
-import persistState from "redux-localstorage";
 import { compose, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import dinnersApp from "./reducers/index";
-import { getInitialState } from "./actions/initialStateFromFirebase";
-
+import { initialState } from "./test/initial_state.json"
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const enhancer = composeEnhancers(persistState(), applyMiddleware(thunk));
+const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const store = createStore(dinnersApp, enhancer);
-
-store.dispatch(getInitialState());
+const store = createStore(dinnersApp, initialState, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>

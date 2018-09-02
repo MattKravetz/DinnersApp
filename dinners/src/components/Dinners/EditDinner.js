@@ -52,7 +52,6 @@ function EditDinner(props) {
       />
     );
   });
-  console.log(props);
   return (
     <div className={classes.root}>
       <Grid container spacing={16}>

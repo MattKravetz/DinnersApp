@@ -20,7 +20,6 @@ const styles = {
 
 function ShoppingListItem(props) {
   const { classes } = props;
-  //console.log(props)
   return (
     <TableRow key={props.id}>
       <TableCell>

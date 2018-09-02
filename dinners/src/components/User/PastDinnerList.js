@@ -42,7 +42,6 @@ class PastDinnerList extends React.Component {
           <TableCell>
             <IconButton
               onClick={e => {
-                console.log("favorited", d.favorited);
                 e.stopPropagation();
                 this.props.toggleFavorite(d);
               }}
